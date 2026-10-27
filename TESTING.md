@@ -65,5 +65,13 @@ Feito no TX9 real, pelo dono. Informado por ele.
 
 - Compilar não prova que a função é segura no firmware do TX9.
 - Testes com pastas e respostas falsas não provam o comportamento no TX9 nem a conexão real com o GitHub.
+- ## 2026-10-27 — Testes da atualização no TX9 (informados pelo dono)
+
+- Release v0.3.0, v0.3.2, v0.3.3 existem com o .apk (conferido pelo dono na página Releases).
+- Checagem de atualização no TX9: acha a versão nova pela internet. O https do TX9 com o GitHub funciona.
+- Download direto (0.3.3): baixa sem abrir o navegador e abre a tela de instalação do Android. FUNCIONA.
+- Instalar por cima: NÃO FUNCIONA. Mensagem do Android: "O app não foi instalado. Já existe um pacote com esse mesmo nome." Aconteceu com app antigo -> 0.3.3 e com 0.3.3 -> 0.3.4 (as duas vindas das Releases).
+- Depois de desinstalar o app antigo, a 0.3.3 instalou normalmente pelo APK baixado e o rodapé mostrou 0.3.3.
+- Ainda NÃO testado no TX9: tela LIMPEZA.
 - Uma medição de RAM livre depois da limpeza não prova que o aparelho ficou mais rápido.
 - As Releases usam a chave de depuração pública: não são adequadas para publicação em loja.
