@@ -4,7 +4,7 @@ Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlog
 
 ## Estado
 
-Em desenvolvimento. Versão 0.3.0. Já existe: tela inicial para controle remoto, tela de Diagnóstico, teste de root, tela LIMPEZA em modo de simulação (só mede o cache do próprio app e não apaga nada) e a função de atualização (botão VERIFICAR ATUALIZAÇÃO e checagem ao abrir o app). A limpeza e a atualização ainda não foram testadas no TX9. A exclusão real ainda não existe. Veja PROJECT_STATE.md.
+Em desenvolvimento. Versão 0.3.8. Já existe: tela inicial para controle remoto, tela de Diagnóstico, teste de root, tela LIMPEZA em modo de simulação (só mede o cache do próprio app e não apaga nada) e atualização pelo próprio app (botão VERIFICAR ATUALIZAÇÃO e checagem ao abrir o app, com download do APK e abertura do instalador do Android). A atualização por cima do app instalado funcionou no TX9 da versão 0.3.7 para a 0.3.8. A tela LIMPEZA ainda não foi testada no TX9. A exclusão real ainda não existe. Veja PROJECT_STATE.md.
 
 ## Objetivo
 
@@ -13,7 +13,7 @@ Em desenvolvimento. Versão 0.3.0. Já existe: tela inicial para controle remoto
 - Otimização rápida com relatório antes e depois, só com números medidos.
 - Interface em português, feita para controle remoto.
 - Funciona sem root. As funções de root são opcionais e ficam atrás de confirmação.
-- Funciona sem internet. A internet só é usada para verificar se há versão nova do app.
+- Funciona sem internet. A internet só é usada para verificar e baixar uma versão nova do app.
 
 ## Compatibilidade
 
@@ -30,30 +30,25 @@ Em desenvolvimento. Versão 0.3.0. Já existe: tela inicial para controle remoto
 
 ## Como instalar o APK
 
-Pela aba Releases (a partir da versão 0.3.0, se a Release existir):
+Pela página Releases:
 
 1. Abra a página Releases do repositório no GitHub.
 2. Abra a versão mais nova e, em Assets, baixe o arquivo tx9-booster-X.Y.Z.apk.
-3. Instale o arquivo no TV Box.
+3. Instale o arquivo no TV Box. O Android sempre pede a sua confirmação para instalar.
 
-Pela aba Actions (alternativa):
-
-1. Abra a aba Actions do repositório no GitHub.
-2. Clique na execução mais recente, chamada Compilar APK, que esteja com o check verde.
-3. Role até a área Artifacts e clique em tx9-booster-debug. O GitHub baixa um arquivo zip.
-4. Extraia o zip. Dentro dele está o arquivo app-debug.apk. Instale no TV Box.
-
-Atualizar por cima do app instalado ainda não foi confirmado. Se o Android recusar, desinstale o app antigo antes de instalar o novo e anote a mensagem exata.
+Para atualizar um app que já está instalado, use o botão VERIFICAR ATUALIZAÇÃO dentro do próprio app (veja abaixo). Não precisa desinstalar o app antigo.
 
 ## Como publicar uma versão nova
 
-Suba versionName e versionCode em app/build.gradle. Ao salvar no main, se os testes e a compilação passarem, o GitHub cria sozinho a Release vX.Y.Z com o APK. Sem subir a versão, nenhuma Release nova é criada.
+Suba versionName e versionCode em app/build.gradle e também o texto da versão (versao_texto) em app/src/main/res/values/strings.xml. Ao salvar no main, se os testes e a compilação passarem, o GitHub cria sozinho a Release vX.Y.Z com o APK. Sem subir a versão, nenhuma Release nova é criada. O check verde no Actions não basta: confirme na página Releases que a Release apareceu.
 
 ## Atualização do app
 
-O botão VERIFICAR ATUALIZAÇÃO e a checagem ao abrir o app consultam a Release mais recente deste repositório. Se houver versão nova, o app mostra o endereço do download e tenta abrir. O app não instala nada sozinho: a instalação é confirmada por você no Android.
+O botão VERIFICAR ATUALIZAÇÃO e a checagem ao abrir o app consultam a Release mais recente deste repositório. Se houver versão nova, o app baixa o APK e abre o instalador do Android. O app não instala nada sozinho: a instalação é sempre confirmada por você no Android.
 
-O APK é de depuração, assinado com uma chave pública de testes (debug.keystore.b64). Ele não serve para publicar em loja.
+## Assinatura do APK
+
+Desde a versão 0.3.7, o APK é assinado com uma chave própria do dono do projeto. A chave e a senha ficam guardadas nos Secrets do GitHub e fora do repositório. As versões antigas usavam uma chave pública de testes. O arquivo debug.keystore.b64 continua no repositório, mas não é mais usado na compilação. Este APK ainda não é feito para loja de aplicativos.
 
 ## Aviso
 
