@@ -11,16 +11,17 @@ Fez: repositório, arquivos de continuidade, escolha de tecnologia (Java), vers�
 ## Etapa 2 — Estrutura mínima funcional
 Estado: Testada no aparelho real (2026-10-26), resultado informado pelo dono.
 Fez: projeto Android com tela inicial, navegação por controle remoto, compilação automática do APK pelo GitHub Actions.
-Pendências: assinatura fixa para atualizar por cima do app instalado; ícone e banner do app.
+Pendências: ícone e banner do app.
 
 ## Etapa 3 — Diagnóstico
-Estado: Planejada (próxima).
-Fazer: ler modelo, versão do Android e API, kernel, ABI, RAM total e livre, armazenamento total e livre, estado do root.
-Pronta quando: a tela mostra os valores reais do TX9 e o dono confirma que batem com o aparelho.
+Estado: Testada no aparelho real, com pendências (2026-10-26), resultado informado pelo dono.
+Fez: tela de diagnóstico (modelo, Android e API, kernel, ABIs, RAM, armazenamento) e teste de root com comando fixo e limite de tempo.
+Confirmado pelo dono: Android real é a API 25 (7.1); root funcionando.
+Pendências: conferir RAM, armazenamento, kernel e ABIs com outra fonte; testar o root com a permissão negada; entender por que a atualização por cima do app não funcionou.
 
 ## Etapa 4 — Limpeza segura
-Estado: Planejada.
-Fazer: análise de arquivos, estimativa real de espaço, modo de simulação, limpeza só dos arquivos do próprio app, lista de caminhos permitidos e proibidos, testes unitários.
+Estado: Planejada (próxima).
+Fazer: lista de caminhos permitidos e proibidos, análise de arquivos, estimativa real de espaço, modo de simulação, limpeza só dos arquivos do próprio app, testes unitários.
 Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos passam e a limpeza real libera bytes medidos.
 
 ## Etapa 5 — Otimização rápida
@@ -45,5 +46,5 @@ Pronta quando: TESTING.md mostra os testes no aparelho real sem falhas important
 
 ## Etapa 9 — Acabamento e lançamento
 Estado: Planejada.
-Fazer: melhorar interface, revisar documentos, preparar versão estável e instruções de assinatura.
+Fazer: melhorar interface, revisar documentos, preparar versão estável, assinatura privada e instruções de instalação.
 Pronta quando: README.md explica como gerar e instalar o APK e a versão estável foi aprovada pelo dono.
