@@ -3,11 +3,19 @@
 Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito: ambiente simulado ou aparelho real (TX9).
 
 ## Resultados até agora
-Nenhum teste foi executado. Ainda não existe código do aplicativo.
+
+### 2026-10-26 — Estrutura mínima (Etapa 2)
+Feito no TX9 real, pelo dono. Os resultados abaixo foram informados por ele. O agente não viu o aparelho.
+- APK instalado: OK.
+- App abre e mostra o título e os 5 botões: OK.
+- Setas movem o foco entre os botões, com borda amarela visível: OK.
+- OK no botão mostra o aviso "Esta função ainda não foi criada.": OK.
+- Voltar fecha o app: OK.
+- Compilação pelo GitHub Actions: check verde, informado pelo dono.
+
+Não testado nesta rodada: consumo de memória do app, tempo de abertura, comportamento com o app em segundo plano.
 
 ## Testes necessários no aparelho real (TX9)
-- O APK instala e o app abre.
-- A navegação por setas, OK e voltar funciona e o botão em foco aparece bem.
 - O diagnóstico mostra valores que batem com o aparelho (Android, RAM, armazenamento, ABI).
 - O estado do root é detectado corretamente, com e sem permissão concedida.
 - O app funciona sem root e explica o que fica indisponível.
