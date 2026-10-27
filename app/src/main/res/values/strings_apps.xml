@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_titulo">APLICATIVOS</string>
+    <string name="apps_aviso">Aperte OK em um app para abrir as informações dele no Android. Esta tela só mostra. Não apaga nem desativa nada.</string>
+    <string name="apps_filtro_usuario">MOSTRANDO: SÓ APPS DE USUÁRIO (apertar para ver todos)</string>
+    <string name="apps_filtro_todos">MOSTRANDO: TODOS (apertar para ver só os de usuário)</string>
+    <string name="apps_total">%1$d apps na lista</string>
+    <string name="apps_carregando">Lendo os apps instalados...</string>
+    <string name="apps_sem_tela">Não foi possível abrir as informações deste app.</string>
+    <string name="apps_tag_usuario">USUÁRIO</string>
+    <string name="apps_tag_sistema">SISTEMA</string>
+    <string name="apps_tag_critico">CRÍTICO</string>
+    <string name="apps_tag_analisar">A ANALISAR</string>
+</resources>
