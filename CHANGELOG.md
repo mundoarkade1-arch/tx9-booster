@@ -2,6 +2,13 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-26 — Etapa 4 (início): trava de segurança da limpeza
+- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga. Ainda não é usada por nenhuma tela.
+- Criado o teste JUnit PoliticaCaminhosTest.
+- app/build.gradle: adicionada a dependência de teste JUnit 4.13.2 (não entra no APK).
+- Workflow do GitHub Actions agora tem duas tarefas: Testes (gradle testDebugUnitTest) e Compilar APK (gradle assembleDebug).
+- Nenhuma função de exclusão real existe ainda.
+
 ## 2026-10-26 — Etapa 3: diagnóstico (versão 0.2.0)
 - Nova tela de Diagnóstico: fabricante, modelo, placa, Android e API, kernel, ABIs, RAM (total, disponível, em uso), armazenamento (total, livre, usado).
 - Nova seção Root: procura arquivo su em locais comuns e tem o botão TESTAR ACESSO ROOT, que roda só o comando fixo "su -c id", com limite de 15 segundos.
