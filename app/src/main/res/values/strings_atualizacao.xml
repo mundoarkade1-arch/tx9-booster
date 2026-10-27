@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="atu_botao">VERIFICAR ATUALIZAÇÃO</string>
+    <string name="atu_verificando">Verificando atualização...</string>
+    <string name="atu_atualizado">O app já está na versão mais nova. Versão instalada: %1$s</string>
+    <string name="atu_nova">Versão nova disponível: %1$s (instalada: %2$s). Toque no botão VERIFICAR ATUALIZAÇÃO para baixar.</string>
+    <string name="atu_endereco">Endereço do download: %1$s</string>
+    <string name="atu_sem_navegador">Não achei um programa para abrir o download neste aparelho. Anote o endereço acima e abra em outro aparelho.</string>
+    <string name="atu_erro">Não foi possível verificar. %1$s</string>
+</resources>
