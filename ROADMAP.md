@@ -18,7 +18,7 @@ Estado: Testada no aparelho real, com pendências (2026-10-26), resultado inform
 
 ## Etapa 4 — Limpeza segura
 
-Estado: Em desenvolvimento (começou em 2026-10-26). Feito: PoliticaCaminhos (trava de segurança dos caminhos), testada em ambiente simulado pelo agente; teste JUnit PoliticaCaminhosTest passou no GitHub Actions (tarefas Testes e Compilar APK com check verde, informado pelo dono em 2026-10-26). Falta: analisador somente leitura, tela LIMPEZA AVANÇADA com modo de simulação, testar a simulação no TX9, e só depois a exclusão real do que é do próprio app. Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos passam e a limpeza real libera bytes medidos.
+Estado: Compilada e testada em ambiente simulado (GitHub Actions verde, informado pelo dono em 2026-10-26). Não testada no aparelho real. Feito: PoliticaCaminhos (trava de segurança dos caminhos, com teste); Analisador somente leitura (limites de 20000 arquivos, 20 níveis de pasta e 100 itens na lista, ignora links simbólicos, com 10 testes); tela LIMPEZA AVANÇADA em modo de simulação (LimpezaActivity, ligada ao botão LIMPEZA), que mede o cache interno e o cache externo do próprio app e nunca apaga nada. Falta: testar a simulação no TX9 (abrir a tela, apertar simular, anotar o que aparece); preparar a versão 0.3.0 para esse teste; e só depois a exclusão real, apenas do cache do próprio app, com confirmação do usuário e relatório de bytes antes e depois. Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos passam e a limpeza real libera bytes medidos.
 
 ## Etapa 5 — Otimização rápida
 
