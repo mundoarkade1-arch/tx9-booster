@@ -1,21 +1,47 @@
 package br.com.tx9booster;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends Activity {
+
+    private static final String NOME_ARQUIVO = "tx9-booster-atualizacao.apk";
 
     private Button btnAtualizar;
     private TextView txtAtualizacao;
     private boolean verificando = false;
+    private boolean baixando = false;
+    private boolean receptorAtivo = false;
+    private long idDownload = -1;
+
+    // Avisa quando o download termina.
+    private final BroadcastReceiver receptor = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            if (id != idDownload) {
+                return;
+            }
+            terminarDownload(id);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +89,12 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        pararReceptor();
+        super.onDestroy();
+    }
+
     private String versaoInstalada() {
         try {
             String v = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -75,7 +107,7 @@ public class MainActivity extends Activity {
     // silencioso = true: só mostra algo se houver versão nova.
     // silencioso = false: botão apertado, sempre mostra uma resposta.
     private void verificarAtualizacao(final boolean silencioso) {
-        if (verificando) {
+        if (verificando || baixando) {
             return;
         }
         verificando = true;
@@ -129,7 +161,7 @@ public class MainActivity extends Activity {
                     + "\n" + getString(R.string.atu_endereco, r.urlDownload));
             txtAtualizacao.setVisibility(View.VISIBLE);
             if (!silencioso) {
-                abrirDownload(r.urlDownload);
+                baixarEInstalar(r.urlDownload);
             }
         } else if (silencioso) {
             txtAtualizacao.setVisibility(View.GONE);
@@ -142,16 +174,117 @@ public class MainActivity extends Activity {
         }
     }
 
-    // Só abre o endereço. Quem instala é o Android, com confirmação do dono.
-    private void abrirDownload(String url) {
+    private void acrescentarTexto(String texto) {
+        txtAtualizacao.setText(txtAtualizacao.getText() + "\n" + texto);
+        txtAtualizacao.setVisibility(View.VISIBLE);
+    }
+
+    // Baixa o APK pelo gerenciador de downloads do Android e depois chama o instalador.
+    // Quem instala é o Android, com confirmação do dono.
+    private void baixarEInstalar(String url) {
+        if (baixando) {
+            return;
+        }
+        if (url == null || !url.endsWith(".apk")) {
+            acrescentarTexto(getString(R.string.inst_erro, "endereço sem arquivo .apk"));
+            return;
+        }
+
+        if (Build.VERSION.SDK_INT >= 26 && !getPackageManager().canRequestPackageInstalls()) {
+            acrescentarTexto(getString(R.string.inst_sem_permissao));
+            try {
+                startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                        Uri.parse("package:" + getPackageName())));
+            } catch (ActivityNotFoundException e) {
+                // Sem tela de configuração: o texto acima já explica o que fazer.
+            }
+            return;
+        }
+
+        DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        File pasta = getExternalFilesDir(null);
+        if (dm == null || pasta == null) {
+            acrescentarTexto(getString(R.string.inst_erro, "sem gerenciador de downloads"));
+            return;
+        }
+
+        File antigo = new File(pasta, NOME_ARQUIVO);
+        if (antigo.exists()) {
+            antigo.delete();
+        }
+
         try {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+            DownloadManager.Request pedido = new DownloadManager.Request(Uri.parse(url));
+            pedido.setTitle("TX9 Booster");
+            pedido.setMimeType("application/vnd.android.package-archive");
+            pedido.setDestinationInExternalFilesDir(this, null, NOME_ARQUIVO);
+            idDownload = dm.enqueue(pedido);
+            registerReceiver(receptor, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            receptorAtivo = true;
+            baixando = true;
+            acrescentarTexto(getString(R.string.inst_baixando));
+        } catch (Exception e) {
+            acrescentarTexto(getString(R.string.inst_erro, e.getClass().getSimpleName()));
+        }
+    }
+
+    private void pararReceptor() {
+        if (receptorAtivo) {
+            try {
+                unregisterReceiver(receptor);
+            } catch (IllegalArgumentException e) {
+                // Já estava desligado.
+            }
+            receptorAtivo = false;
+        }
+    }
+
+    private void terminarDownload(long id) {
+        pararReceptor();
+        baixando = false;
+
+        DownloadManager dm = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        if (dm == null) {
+            acrescentarTexto(getString(R.string.inst_erro, "sem gerenciador de downloads"));
+            return;
+        }
+
+        int status = -1;
+        int motivo = -1;
+        Cursor c = dm.query(new DownloadManager.Query().setFilterById(id));
+        try {
+            if (c != null && c.moveToFirst()) {
+                status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                motivo = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_REASON));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        if (status != DownloadManager.STATUS_SUCCESSFUL) {
+            acrescentarTexto(getString(R.string.inst_erro, "código " + motivo));
+            return;
+        }
+
+        Uri arquivo = dm.getUriForDownloadedFile(id);
+        if (arquivo == null) {
+            acrescentarTexto(getString(R.string.inst_erro, "arquivo não encontrado"));
+            return;
+        }
+
+        acrescentarTexto(getString(R.string.inst_pronto));
+        try {
+            Intent instalar = new Intent(Intent.ACTION_VIEW);
+            instalar.setDataAndType(arquivo, "application/vnd.android.package-archive");
+            instalar.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+                    | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(instalar);
         } catch (ActivityNotFoundException e) {
-            txtAtualizacao.setText(txtAtualizacao.getText() + "\n"
-                    + getString(R.string.atu_sem_navegador));
+            acrescentarTexto(getString(R.string.inst_recusada, "sem instalador"));
         } catch (SecurityException e) {
-            txtAtualizacao.setText(txtAtualizacao.getText() + "\n"
-                    + getString(R.string.atu_sem_navegador));
+            acrescentarTexto(getString(R.string.inst_recusada, "sem permissão"));
         }
     }
 }
