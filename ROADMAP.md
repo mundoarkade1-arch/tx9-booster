@@ -20,8 +20,9 @@ Confirmado pelo dono: Android real é a API 25 (7.1); root funcionando.
 Pendências: conferir RAM, armazenamento, kernel e ABIs com outra fonte; testar o root com a permissão negada; entender por que a atualização por cima do app não funcionou.
 
 ## Etapa 4 — Limpeza segura
-Estado: Planejada (próxima).
-Fazer: lista de caminhos permitidos e proibidos, análise de arquivos, estimativa real de espaço, modo de simulação, limpeza só dos arquivos do próprio app, testes unitários.
+Estado: Em desenvolvimento (começou em 2026-10-26).
+Feito: PoliticaCaminhos (trava de segurança dos caminhos), testada em ambiente simulado pelo agente; teste JUnit escrito, resultado no GitHub Actions ainda não conferido.
+Falta: analisador somente leitura, tela LIMPEZA AVANÇADA com modo de simulação, testar a simulação no TX9, e só depois a exclusão real do que é do próprio app.
 Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos passam e a limpeza real libera bytes medidos.
 
 ## Etapa 5 — Otimização rápida
@@ -31,7 +32,7 @@ Pronta quando: o relatório mostra só números medidos, sem promessa de velocid
 
 ## Etapa 6 — Funções avançadas de root
 Estado: Planejada.
-Fazer: só recursos com compatibilidade, segurança e reversão verificadas, sempre com confirmação do usuário.
+Fazer: só recursos com compatibilidade, segurança e reversão verificadas, sempre com confirmação do usuário. Inclui validar se existe método seguro para limpar cache de outros aplicativos no Android 7.1.
 Pronta quando: cada função foi testada no TX9 e tem plano de reversão escrito.
 
 ## Etapa 7 — Gerenciamento de aplicativos
