@@ -2,14 +2,28 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-26 — Etapa 4 (continuação): analisador e tela de simulação
+
+- Criado o Analisador (somente leitura): percorre uma área autorizada, soma os bytes reais dos arquivos, consulta a PoliticaCaminhos para cada arquivo, não segue links simbólicos e tem limites (20000 arquivos, profundidade 20, 100 itens na lista). Nunca apaga nada.
+- Criado o teste AnalisadorTest (6 testes JUnit): soma de bytes, pasta vazia, área fora da política, área nula ou inexistente, "analisar não apaga nada" e link simbólico ignorado.
+- Criada a tela LIMPEZA AVANÇADA em modo de simulação (LimpezaActivity e activity_limpeza.xml). O botão SIMULAR LIMPEZA analisa em segundo plano o cache interno e o cache externo do próprio app e mostra arquivos, bytes, itens pulados e os primeiros 10 arquivos. Nenhum arquivo é apagado: o código não tem comando de apagar.
+- Criado strings_simulacao.xml com os textos da tela nova (nomes começam com simul_), para não mexer no strings.xml.
+- AndroidManifest.xml: registrada a LimpezaActivity.
+- MainActivity.java: o botão LIMPEZA AVANÇADA agora abre a tela nova. Os botões OTIMIZAÇÃO, APLICATIVOS e HISTÓRICO continuam mostrando "Esta função ainda não foi criada."
+- A versão do app NÃO mudou: continua 0.2.0 (versionCode 2).
+- Documentação: PROJECT_STATE.md atualizado e a linha "Documentação atrasada" removida. README.md e ROADMAP.md já tinham sido atualizados na sessão 1.
+- Conferência: o dono informou check verde na aba Actions depois de cada arquivo salvo. Nenhuma exclusão real existe.
+
 ## 2026-10-26 — Etapa 4 (início): trava de segurança da limpeza
-- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga. Ainda não é usada por nenhuma tela.
+
+- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga.
 - Criado o teste JUnit PoliticaCaminhosTest.
 - app/build.gradle: adicionada a dependência de teste JUnit 4.13.2 (não entra no APK).
 - Workflow do GitHub Actions agora tem duas tarefas: Testes (gradle testDebugUnitTest) e Compilar APK (gradle assembleDebug).
 - Nenhuma função de exclusão real existe ainda.
 
 ## 2026-10-26 — Etapa 3: diagnóstico (versão 0.2.0)
+
 - Nova tela de Diagnóstico: fabricante, modelo, placa, Android e API, kernel, ABIs, RAM (total, disponível, em uso), armazenamento (total, livre, usado).
 - Nova seção Root: procura arquivo su em locais comuns e tem o botão TESTAR ACESSO ROOT, que roda só o comando fixo "su -c id", com limite de 15 segundos.
 - O botão DIAGNÓSTICO da tela inicial abre a nova tela.
@@ -18,15 +32,18 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - Problema em aberto: o dono precisou desinstalar o app antigo antes de instalar a 0.2.0. Causa desconhecida.
 
 ## 2026-10-26 — Assinatura fixa de depuração
+
 - Adicionado o arquivo debug.keystore.b64 (chave de depuração pública, só para testes) e um passo no GitHub Actions que a instala antes de compilar, para que o APK sempre saia com a mesma assinatura.
 
 ## 2026-10-26 — Etapa 2: estrutura mínima
+
 - Criado o projeto Android mínimo em Java: tela inicial com 5 botões grandes, navegação por controle remoto e foco amarelo visível.
 - Os botões ainda só mostravam o aviso "Esta função ainda não foi criada."
 - Criada a compilação automática do APK de depuração pelo GitHub Actions (Java 17, Gradle 8.5, compileSdk 34).
 - APK instalado e aberto no TX9 pelo dono, que informou que a navegação funcionou.
 
 ## 2026-10-26 — Etapa 1: planejamento
+
 - Repositório tx9-booster criado pelo dono no GitHub.
 - Criados AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md e README.md.
 - Decisão: versão mínima do Android 5.0 (API 21), para servir ao Android 7.1 e ao 10.
