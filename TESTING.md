@@ -4,6 +4,25 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-27 — Sessão 6: textos da limpeza corrigidos, versão 0.4.1 (informado pelo dono)
+
+O agente não viu o aparelho nem o GitHub; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
+
+- strings_simulacao.xml salvo com dois textos novos: simul_subtitulo "Simular e apagar o cache do app" e simul_aviso "O botão SIMULAR só mede e mostra. Ele não apaga nada." O dono informou Actions verde depois de salvar.
+- Versão 0.4.1 publicada: strings.xml (versao_texto "Versão 0.4.1 (textos da limpeza corrigidos)") salvo primeiro e build.gradle (versionCode 14, versionName 0.4.1) por último. O dono informou Actions verde e que a Release 0.4.1 apareceu na página Releases.
+- NÃO conferido no TX9: instalar a 0.4.1 pelo botão do app; que a tela inicial mostra "Versão 0.4.1 (textos da limpeza corrigidos)"; que a tela LIMPEZA mostra o subtítulo e o aviso novos. O dono disse que testa depois.
+- NÃO conferido: os números de Antes, Apagados, Depois e Falhas do relatório. O dono adiou e vai testar depois, com calma.
+- NÃO perguntado ainda: se CANCELAR não apaga; o que a frase da mensagem de versão nova diz na tela.
+- Chave de assinatura: o dono disse que colou o arquivo e a senha só nos Secrets do GitHub e que NÃO tem a senha em mãos. Os Secrets não podem ser lidos de volta. Cópia fora do GitHub: NÃO confirmada. O dono adiou o assunto. Se perder o arquivo ou a senha, precisa desinstalar o app e criar chave nova.
+
+### 2026-10-27 — Sessão 6: ExclusorCacheTest (GitHub Actions, informado pelo dono)
+
+- ExclusorCacheTest.java (JUnit 4.13.2, em app/src/test/java/br/com/tx9booster/) salvo pelo dono. O agente leu o teste e o ExclusorCache.java colados pelo dono e conferiu que os nomes batem (areaValida, arquivosApagados, bytesLiberados, falhas, ignorados). O agente não rodou o teste.
+- Resultado: o dono informou Actions VERDE na execução do arquivo. Isso é pasta falsa em ambiente do Actions, não é o TX9.
+- 7 testes: apaga arquivos e subpastas e mantém a pasta do cache; soma só os bytes apagados (35); pasta vazia continua válida e não apaga nada; área fora da política não apaga nada; link simbólico para fora é ignorado; área nula ou inexistente não apaga nada; política nula não apaga nada.
+- NÃO conferido: se o teste do link simbólico rodou de verdade ou foi pulado (ele pula, não falha, se o ambiente não deixar criar link). O PoliticaCaminhosTest cria link sem pular e passa, o que sugere que o ambiente aceita, mas isso não prova.
+- Esse teste não cria Release (a versão não muda).
+
 ### 2026-10-27 — Sessão 5: exclusão real do cache do app, versão 0.4.0 (TX9 real, informado pelo dono)
 
 O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
@@ -18,7 +37,7 @@ O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu
 
 - ExclusorCache testado com um script próprio do agente (Java, pastas falsas temporárias, fora do GitHub). 11 verificações, todas passaram: área válida; 3 arquivos apagados; 35 bytes liberados (soma certa); sem falhas; a própria pasta do cache continua existindo; arquivo apagado some; arquivo de fora da área fica intacto; link simbólico para fora é ignorado; área não autorizada: nada é apagado; área nula; política nula.
 - LimpezaActivity compilado pelo agente com classes falsas do Android (confere erros de escrita do código, não prova que funciona no Android).
-- Estes testes NÃO estão no repositório. Não existe ainda teste JUnit do ExclusorCache no GitHub Actions.
+- Estes testes NÃO estão no repositório. (Na sessão 6 foi criado o ExclusorCacheTest JUnit no GitHub Actions, ver acima.)
 
 ### 2026-10-27 — Sessão 5: tela LIMPEZA em simulação no TX9, versão 0.3.9 (TX9 real, informado pelo dono)
 
@@ -78,5 +97,5 @@ NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (H
 ## Pendências de registro
 
 - Este arquivo não tem os testes das Etapas 2 e 3 no TX9 (tela de Diagnóstico e teste de root), que o CHANGELOG cita. Eles não foram escritos aqui para não inventar. Se o dono tiver o texto antigo, ele pode ser acrescentado.
-- Faltam os números do relatório da exclusão real (Antes, Apagados, Falhas), o teste do CANCELAR e a leitura da frase nova da mensagem de versão nova.
-- Não existe teste JUnit do ExclusorCache no GitHub Actions.
+- Faltam: os números do relatório da exclusão real (Antes, Apagados, Depois, Falhas), o teste do CANCELAR, a leitura da frase nova da mensagem de versão nova e o teste da 0.4.1 no TX9.
+- O teste do link simbólico do ExclusorCacheTest: não se sabe se rodou ou foi pulado.
