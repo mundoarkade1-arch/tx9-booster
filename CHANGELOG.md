@@ -2,21 +2,16 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-26 — Etapa 4 (continuação): analisador e tela de simulação
+## 2026-10-26 — Sessão 2: conferência do GitHub Actions e documentação
 
-- Criado o Analisador (somente leitura): percorre uma área autorizada, soma os bytes reais dos arquivos, consulta a PoliticaCaminhos para cada arquivo, não segue links simbólicos e tem limites (20000 arquivos, profundidade 20, 100 itens na lista). Nunca apaga nada.
-- Criado o teste AnalisadorTest (6 testes JUnit): soma de bytes, pasta vazia, área fora da política, área nula ou inexistente, "analisar não apaga nada" e link simbólico ignorado.
-- Criada a tela LIMPEZA AVANÇADA em modo de simulação (LimpezaActivity e activity_limpeza.xml). O botão SIMULAR LIMPEZA analisa em segundo plano o cache interno e o cache externo do próprio app e mostra arquivos, bytes, itens pulados e os primeiros 10 arquivos. Nenhum arquivo é apagado: o código não tem comando de apagar.
-- Criado strings_simulacao.xml com os textos da tela nova (nomes começam com simul_), para não mexer no strings.xml.
-- AndroidManifest.xml: registrada a LimpezaActivity.
-- MainActivity.java: o botão LIMPEZA AVANÇADA agora abre a tela nova. Os botões OTIMIZAÇÃO, APLICATIVOS e HISTÓRICO continuam mostrando "Esta função ainda não foi criada."
-- A versão do app NÃO mudou: continua 0.2.0 (versionCode 2).
-- Documentação: PROJECT_STATE.md atualizado e a linha "Documentação atrasada" removida. README.md e ROADMAP.md já tinham sido atualizados na sessão 1.
-- Conferência: o dono informou check verde na aba Actions depois de cada arquivo salvo. Nenhuma exclusão real existe.
+- O dono conferiu a aba Actions: a execução mais recente está com check verde nas duas tarefas, Testes e Compilar APK. O PoliticaCaminhosTest passou no GitHub. Informado pelo dono, o agente não viu a tela.
+- Atualizados PROJECT_STATE.md, TESTING.md e ROADMAP.md com esse resultado.
+- Registrada a ideia adiada de atualização do app (botão VERIFICAR ATUALIZAÇÃO), por decisão do dono: primeiro terminar a Etapa 4. Detalhes no ROADMAP.md.
+- Nenhum código foi alterado nesta sessão. Nenhuma função nova foi criada.
 
 ## 2026-10-26 — Etapa 4 (início): trava de segurança da limpeza
 
-- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga.
+- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga. Ainda não é usada por nenhuma tela.
 - Criado o teste JUnit PoliticaCaminhosTest.
 - app/build.gradle: adicionada a dependência de teste JUnit 4.13.2 (não entra no APK).
 - Workflow do GitHub Actions agora tem duas tarefas: Testes (gradle testDebugUnitTest) e Compilar APK (gradle assembleDebug).
