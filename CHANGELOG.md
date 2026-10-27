@@ -2,19 +2,24 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-27 — Sessão 5: documentos corrigidos e versão 0.3.9
+## 2026-10-27 — Sessão 5: documentos corrigidos, versões 0.3.9 e 0.4.0 (exclusão real do cache do app)
 
 - README.md reescrito: versão 0.3.8, instalação pela página Releases, atualização pelo botão do próprio app, chave de assinatura própria. A seção antiga sobre instalar pelo zip do Actions saiu.
 - ROADMAP.md reescrito: seção "Atualização do app" com o resultado do teste no TX9 e as pendências; Etapa 9 em desenvolvimento (chave própria já feita).
 - strings_atualizacao.xml: a frase da mensagem de versão nova (atu_nova) agora diz "Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação." No texto antigo estava "Toque no botão VERIFICAR ATUALIZAÇÃO para baixar."
 - 0.3.9: versionCode 12 e versionName 0.3.9 em app/build.gradle; versao_texto em strings.xml mudou para "Versão 0.3.9 (limpeza simulada)". O strings.xml foi salvo antes do build.gradle, para a Release sair já com o texto certo. Release v0.3.9 confirmada na página Releases, com o .apk.
 - Atualização por cima da 0.3.8 para a 0.3.9, pelo botão do próprio app, FUNCIONOU no TX9 e a tela inicial mostrou "Versão 0.3.9". Foi a primeira prova com mudança real de código depois da chave própria.
-- Tela LIMPEZA (simulação) testada no TX9 pelo dono na 0.3.9: abriu, simulou e mostrou "1,4 MB". Não conferido: se é o total ou só uma parte, se havia lista, se avisou que nada foi apagado, e se bate com o cache real do app.
-- NÃO conferido: o dono não leu a frase nova da mensagem de versão nova na tela.
-- Causa exata do erro antigo continua NÃO provada.
-- Atualizados PROJECT_STATE.md, CHANGELOG.md e TESTING.md.
+- Tela LIMPEZA (simulação) testada no TX9 pelo dono na 0.3.9: abriu, simulou e mostrou "1,4 MB", e a tela avisa que nada foi apagado (informado pelo dono). Pelo código do LimpezaActivity, o 1,4 MB é o total geral (cache interno mais cache externo). Não conferido: se havia lista de arquivos e se o valor bate com o cache real nas Configurações do Android.
+- EXCLUSÃO REAL (0.4.0), pedida pelo dono: novo ExclusorCache.java (apaga só dentro das áreas autorizadas pela PoliticaCaminhos; cada arquivo passa pela trava; nunca apaga a própria pasta do cache; ignora links simbólicos; soma como "liberado" só o que foi apagado de verdade; limites de 20000 arquivos e 20 níveis). Novo strings_exclusao.xml. activity_limpeza.xml ganhou o botão btnApagar (APAGAR CACHE DO APP, desligado até uma simulação com algo para apagar) e o aviso novo (exc_aviso). LimpezaActivity.java: SIMULAR continua igual; APAGAR abre uma pergunta com o foco em CANCELAR; depois mostra o relatório com Antes, Apagados, Depois, Falhas e Ignorados, todos medidos. Só o cache interno e o cache externo do próprio app. Nada de outros aplicativos.
+- Ordem em que o dono salvou: strings_exclusao.xml, activity_limpeza.xml e LimpezaActivity.java (o Actions ficou verde), depois strings.xml (versao_texto) e por último o build.gradle.
+- 0.4.0: versionCode 13 e versionName 0.4.0 em app/build.gradle; versao_texto em strings.xml mudou para "Versão 0.4.0 (limpeza do cache do app)".
+- Verificação do agente, só em ambiente simulado (não é o TX9): o ExclusorCache foi testado com um script próprio em pastas falsas (11 verificações, todas passaram: apaga os arquivos, soma os bytes certos, mantém a pasta do cache, ignora link simbólico, não apaga área fora da política, trata área nula e política nula). O LimpezaActivity foi compilado com classes falsas do Android. A compilação de verdade foi a do GitHub Actions (verde, informado pelo dono).
+- Teste no TX9 (informado pelo dono, que respondeu que fez todos os passos): atualizou pelo botão do app, abriu LIMPEZA, simulou, apagou e o cache ficou em ZERO.
+- NÃO conferido: os números de Antes, Apagados e Falhas do relatório; que CANCELAR não apaga; que a tela inicial mostrou "Versão 0.4.0" (não foi lida em separado); a frase nova da mensagem de versão nova (o dono não contou o que leu).
+- Causa exata do erro antigo da atualização continua NÃO provada.
+- Falta: teste JUnit do ExclusorCache no GitHub Actions.
+- Atualizados PROJECT_STATE.md, CHANGELOG.md, TESTING.md, README.md e ROADMAP.md.
 - As cópias do GitHub que o agente conseguiu abrir estavam velhas (README e PROJECT_STATE antigos). O agente usou o texto que o dono colou.
-- Nenhuma função de exclusão real foi criada.
 
 ## 2026-10-27 — Sessão 4: chave própria de assinatura (versões 0.3.5 a 0.3.8)
 
