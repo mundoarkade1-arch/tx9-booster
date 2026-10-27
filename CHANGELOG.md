@@ -9,10 +9,12 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - strings_atualizacao.xml: a frase da mensagem de versão nova (atu_nova) agora diz "Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação." No texto antigo estava "Toque no botão VERIFICAR ATUALIZAÇÃO para baixar."
 - 0.3.9: versionCode 12 e versionName 0.3.9 em app/build.gradle; versao_texto em strings.xml mudou para "Versão 0.3.9 (limpeza simulada)". O strings.xml foi salvo antes do build.gradle, para a Release sair já com o texto certo. Release v0.3.9 confirmada na página Releases, com o .apk.
 - Atualização por cima da 0.3.8 para a 0.3.9, pelo botão do próprio app, FUNCIONOU no TX9 e a tela inicial mostrou "Versão 0.3.9". Foi a primeira prova com mudança real de código depois da chave própria.
+- Tela LIMPEZA (simulação) testada no TX9 pelo dono na 0.3.9: abriu, simulou e mostrou "1,4 MB". Não conferido: se é o total ou só uma parte, se havia lista, se avisou que nada foi apagado, e se bate com o cache real do app.
 - NÃO conferido: o dono não leu a frase nova da mensagem de versão nova na tela.
 - Causa exata do erro antigo continua NÃO provada.
 - Atualizados PROJECT_STATE.md, CHANGELOG.md e TESTING.md.
 - As cópias do GitHub que o agente conseguiu abrir estavam velhas (README e PROJECT_STATE antigos). O agente usou o texto que o dono colou.
+- Nenhuma função de exclusão real foi criada.
 
 ## 2026-10-27 — Sessão 4: chave própria de assinatura (versões 0.3.5 a 0.3.8)
 
