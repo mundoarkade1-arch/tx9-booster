@@ -10,11 +10,29 @@ android {
         applicationId "br.com.tx9booster"
         minSdk 21
         targetSdk 28
-        versionCode 9
-        versionName "0.3.6"
+        versionCode 10
+        versionName "0.3.7"
+    }
+
+    signingConfigs {
+        proprio {
+            def arquivo = System.getenv('TX9_KEYSTORE_ARQUIVO')
+            def senha = System.getenv('TX9_KEYSTORE_SENHA')
+            if (arquivo != null && senha != null) {
+                storeFile file(arquivo)
+                storePassword senha
+                keyAlias 'tx9booster'
+                keyPassword senha
+            }
+        }
     }
 
     buildTypes {
+        debug {
+            if (System.getenv('TX9_KEYSTORE_ARQUIVO') != null) {
+                signingConfig signingConfigs.proprio
+            }
+        }
         release {
             minifyEnabled false
         }
