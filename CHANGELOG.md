@@ -47,5 +47,13 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 ## 2026-10-26 — Etapa 1: planejamento
 
 - Repositório tx9-booster criado pelo dono no GitHub.
+
+- ## 2026-10-27 — Sessão 3: atualização pelo próprio app (versões 0.3.1 a 0.3.4)
+
+- 0.3.1: rodapé da tela inicial corrigido para a versão certa.
+- 0.3.2: o botão VERIFICAR ATUALIZAÇÃO passa a baixar o APK sem abrir o navegador (primeira versão, pelo gerenciador de downloads do Android). Textos novos em strings_instalacao.xml e permissão REQUEST_INSTALL_PACKAGES.
+- 0.3.3: download refeito no jeito do app asc-tvbox: classe InstaladorAtualizacao, FileProvider, file_paths.xml, androidx.core 1.12.0 e android.useAndroidX=true. Mostra a porcentagem do download.
+- 0.3.4: só aumento de versão, para testar a atualização por cima.
+- PROBLEMA ABERTO: o Android recusa instalar por cima ("já existe um pacote com esse mesmo nome"). Provável diferença de assinatura entre os APKs. Ver PROJECT_STATE.md.
 - Criados AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md e README.md.
 - Decisão: versão mínima do Android 5.0 (API 21), para servir ao Android 7.1 e ao 10.
