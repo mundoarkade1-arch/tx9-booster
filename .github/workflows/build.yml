@@ -30,6 +30,8 @@ jobs:
   apk:
     name: Compilar APK
     runs-on: ubuntu-latest
+    env:
+      TX9_KEYSTORE_SENHA: ${{ secrets.TX9_SENHA }}
     steps:
       - name: Baixar o codigo
         uses: actions/checkout@v4
@@ -40,18 +42,23 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Instalar a chave de depuracao fixa
+      - name: Instalar a chave propria do app
+        env:
+          KEYSTORE_B64: ${{ secrets.TX9_KEYSTORE_BASE64 }}
         run: |
-          mkdir -p ~/.android
-          base64 -d debug.keystore.b64 > ~/.android/debug.keystore
-          keytool -list -keystore ~/.android/debug.keystore -storepass android
+          set -e
+          test -n "$KEYSTORE_B64"
+          test -n "$TX9_KEYSTORE_SENHA"
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/tx9booster.jks"
+          echo "TX9_KEYSTORE_ARQUIVO=$RUNNER_TEMP/tx9booster.jks" >> "$GITHUB_ENV"
+          keytool -list -keystore "$RUNNER_TEMP/tx9booster.jks" -storepass "$TX9_KEYSTORE_SENHA" -alias tx9booster
 
       - name: Instalar Gradle 8.5
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.5'
 
-      - name: Compilar APK de depuracao
+      - name: Compilar APK assinado com a chave propria
         run: gradle assembleDebug
 
       - name: Guardar o APK
@@ -95,5 +102,5 @@ jobs:
           cp apk-baixado/app-debug.apk "tx9-booster-$VERSAO.apk"
           gh release create "$TAG" "tx9-booster-$VERSAO.apk" \
             --title "TX9 Booster $VERSAO" \
-            --notes "APK de depuracao da versao $VERSAO. Assinado com a chave publica de testes. Veja o CHANGELOG.md." \
+            --notes "APK da versao $VERSAO. Assinado com a chave propria do app. Veja o CHANGELOG.md." \
             --target "$GITHUB_SHA"
