@@ -4,6 +4,17 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-27 — Sessão 5: atualização por cima com mudança real de código, 0.3.8 para 0.3.9 (TX9 real, informado pelo dono)
+
+O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
+
+- Versão 0.3.9 publicada: o dono informou verde no Actions e a Release v0.3.9 existe na página Releases, com o .apk. O strings.xml (versao_texto) foi salvo antes do build.gradle, para a Release sair já com o texto certo.
+- 0.3.8 -> 0.3.9 pelo botão VERIFICAR ATUALIZAÇÃO do próprio app, por cima, sem desinstalar: OK. O dono disse "deu certo" e confirmou que a tela inicial mostra "Versão 0.3.9".
+- Esta foi a "próxima prova" pedida na sessão 4: atualização por cima com mudança real de código, já com a chave própria. Passou.
+- NÃO conferido: a frase nova da mensagem de versão nova ("Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação."). O dono respondeu que não leu a mensagem. Só vale como conferida quando ele ler na tela, numa próxima atualização.
+- A causa exata do erro antigo continua NÃO provada. Duas atualizações por cima seguidas funcionaram com a chave própria (0.3.7 para 0.3.8 e 0.3.8 para 0.3.9), mas isso não explica por que a 0.3.7 entrou por cima da 0.3.5.
+- Sobre a pendência anterior ("guardar o tx9booster.jks"): ainda não foi confirmado pelo dono que ele guardou a cópia da chave.
+
 ### 2026-10-27 — Sessão 4: atualização por cima com chave própria (TX9 real, informado pelo dono)
 
 O agente não viu o aparelho; as telas foram descritas pelo dono (ou mostradas em foto).
@@ -17,7 +28,7 @@ O agente não viu o aparelho; as telas foram descritas pelo dono (ou mostradas e
 - 0.3.7 -> 0.3.8 pelo botão VERIFICAR ATUALIZAÇÃO do próprio app (download, tela de instalação do Android, confirmação): OK. A tela inicial mostrou "Versão 0.3.8". Release v0.3.8 conferida pelo dono na página Releases.
 - Conclusão: a atualização por cima FUNCIONA com a chave própria. A causa exata do erro antigo NÃO foi provada.
 - Não confirmado: que o APK da 0.3.5 (chave de depuração) e o da 0.3.7 (chave própria) tenham assinaturas diferentes. O Android aceitou a 0.3.7 por cima da 0.3.5, o que não bate com a teoria de assinaturas diferentes entre elas. Não se sabe explicar isso ainda.
-- Próxima prova: publicar uma versão nova (0.3.9 ou a seguinte) com mudança real e atualizar por cima de novo pelo botão do app.
+- Próxima prova: publicar uma versão nova (0.3.9 ou a seguinte) com mudança real e atualizar por cima de novo pelo botão do app. (Feita na sessão 5, com a 0.3.9.)
 
 ### 2026-10-27 — Sessão 3: testes da atualização no TX9 (informados pelo dono)
 
@@ -38,4 +49,9 @@ Testes que rodam na tarefa Testes (todos com pastas falsas temporárias ou respo
 - VerificadorAtualizacaoTest, 11 testes: comparação de versões como números (0.10.0 > 0.9.0; 1.0 igual a 1.0.0); versão igual ou menor não é nova; versão inválida nunca é nova; leitura de "v0.3.0" e de sufixos; nova versão com APK devolve o endereço do APK; sem APK devolve a página da Release; endereço de outro site é ignorado; mesma versão diz atualizado; resposta vazia ou sem versão dá erro; número de versão perigoso ("../x") dá erro.
 - Testes de link simbólico são pulados, não falham, se o ambiente não permitir criar links.
 
-NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (HttpURLConnection), o download e a instalação
+NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (HttpURLConnection), o download e a instalação.
+
+## Pendências de registro
+
+- Este arquivo não tem os testes das Etapas 2 e 3 no TX9 (tela de Diagnóstico e teste de root), que o CHANGELOG cita. Eles não foram escritos aqui para não inventar. Se o dono tiver o texto antigo, ele pode ser acrescentado.
+- A tela LIMPEZA nunca foi testada no TX9.
