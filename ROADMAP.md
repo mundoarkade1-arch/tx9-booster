@@ -18,18 +18,7 @@ Estado: Testada no aparelho real, com pendências (2026-10-26), resultado inform
 
 ## Etapa 4 — Limpeza segura
 
-Estado: Em desenvolvimento. A simulação está Compilada e testada em ambiente automático do GitHub (testes JUnit), mas NÃO foi testada no TX9.
-
-Feito:
-- PoliticaCaminhos (trava de segurança dos caminhos): testada em ambiente simulado pelo agente e pelo JUnit no GitHub (PoliticaCaminhosTest passou na execução #27, vista pelo agente).
-- Analisador somente leitura, com AnalisadorTest (6 testes). Check verde informado pelo dono.
-- Tela LIMPEZA AVANÇADA em modo de simulação: mostra arquivos e bytes do cache do próprio app (interno e externo) sem apagar nada. Compilada, check verde informado pelo dono.
-
-Falta:
-- Testar a simulação no TX9 (o dono instala o APK novo, aperta SIMULAR LIMPEZA e conta o que apareceu).
-- Só depois disso, a exclusão real, apenas do que é do próprio app, com confirmação do dono, e relatório de bytes realmente liberados.
-
-Pronta quando: a simulação lista o que seria apagado sem apagar nada (testado no TX9), os testes de caminhos passam e a limpeza real libera bytes medidos.
+Estado: Em desenvolvimento (começou em 2026-10-26). Feito: PoliticaCaminhos (trava de segurança dos caminhos), testada em ambiente simulado pelo agente; teste JUnit PoliticaCaminhosTest passou no GitHub Actions (tarefas Testes e Compilar APK com check verde, informado pelo dono em 2026-10-26). Falta: analisador somente leitura, tela LIMPEZA AVANÇADA com modo de simulação, testar a simulação no TX9, e só depois a exclusão real do que é do próprio app. Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos passam e a limpeza real libera bytes medidos.
 
 ## Etapa 5 — Otimização rápida
 
@@ -50,3 +39,7 @@ Estado: Planejada. Fazer: testar controle remoto, consumo de memória e comporta
 ## Etapa 9 — Acabamento e lançamento
 
 Estado: Planejada. Fazer: melhorar interface, revisar documentos, preparar versão estável, assinatura privada e instruções de instalação. Pronta quando: README.md explica como gerar e instalar o APK e a versão estável foi aprovada pelo dono.
+
+## Ideia adiada — Atualização do app
+
+Estado: Planejada, adiada por decisão do dono (2026-10-26): primeiro terminar a Etapa 4. Pedido do dono: o app se atualizar ao abrir ou ter um botão VERIFICAR ATUALIZAÇÃO. Recomendação: só o botão, que consulta a internet quando o dono apertar. Checar sozinho ao abrir exige o dono aprovar a mudança da regra "não depender de internet e não agir sozinho" do AGENTS.md. Antes de começar: (1) publicar cada versão em Releases do GitHub (ainda não existe nenhuma); (2) resolver a atualização por cima do app sem desinstalar (assinatura); (3) o app não instala sozinho, só avisa e abre o download, com confirmação do Android. Pronta quando: o botão avisa corretamente se há versão nova e a atualização por cima funciona no TX9.
