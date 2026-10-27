@@ -4,7 +4,7 @@ Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlog
 
 ## Estado
 
-Em desenvolvimento. Versão do app: 0.2.0. Já existe: tela inicial para controle remoto, tela de Diagnóstico, teste de root e a tela LIMPEZA AVANÇADA em modo de simulação. A simulação só mede e mostra o cache do próprio app, e não apaga nada. A tela de simulação compilou, mas ainda não foi testada no TX9. A limpeza real ainda não existe. Veja PROJECT_STATE.md.
+Em desenvolvimento. Versão 0.2.0 (o número da versão ainda não foi atualizado). Já existe: tela inicial para controle remoto, tela de Diagnóstico, teste de root e a tela LIMPEZA em modo de simulação, que só mede o cache do próprio app e não apaga nada. A tela de limpeza ainda não foi testada no TX9. A exclusão real ainda não existe. Veja PROJECT_STATE.md.
 
 ## Objetivo
 
