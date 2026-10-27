@@ -2,6 +2,18 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-27 — Sessão 5: documentos corrigidos e versão 0.3.9
+
+- README.md reescrito: versão 0.3.8, instalação pela página Releases, atualização pelo botão do próprio app, chave de assinatura própria. A seção antiga sobre instalar pelo zip do Actions saiu.
+- ROADMAP.md reescrito: seção "Atualização do app" com o resultado do teste no TX9 e as pendências; Etapa 9 em desenvolvimento (chave própria já feita).
+- strings_atualizacao.xml: a frase da mensagem de versão nova (atu_nova) agora diz "Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação." No texto antigo estava "Toque no botão VERIFICAR ATUALIZAÇÃO para baixar."
+- 0.3.9: versionCode 12 e versionName 0.3.9 em app/build.gradle; versao_texto em strings.xml mudou para "Versão 0.3.9 (limpeza simulada)". O strings.xml foi salvo antes do build.gradle, para a Release sair já com o texto certo. Release v0.3.9 confirmada na página Releases, com o .apk.
+- Atualização por cima da 0.3.8 para a 0.3.9, pelo botão do próprio app, FUNCIONOU no TX9 e a tela inicial mostrou "Versão 0.3.9". Foi a primeira prova com mudança real de código depois da chave própria.
+- NÃO conferido: o dono não leu a frase nova da mensagem de versão nova na tela.
+- Causa exata do erro antigo continua NÃO provada.
+- Atualizados PROJECT_STATE.md, CHANGELOG.md e TESTING.md.
+- As cópias do GitHub que o agente conseguiu abrir estavam velhas (README e PROJECT_STATE antigos). O agente usou o texto que o dono colou.
+
 ## 2026-10-27 — Sessão 4: chave própria de assinatura (versões 0.3.5 a 0.3.8)
 
 - Lido o build.yml. Todas as tarefas usavam o mesmo APK, assinado com a chave pública de depuração. A hipótese "cada tarefa usa uma chave" não se confirmou.
