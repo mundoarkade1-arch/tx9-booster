@@ -4,20 +4,28 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
-### 2026-10-26 — Estrutura mínima (Etapa 2)
+### 2026-10-26 — Diagnóstico e root (Etapa 3, versão 0.2.0)
 Feito no TX9 real, pelo dono. Os resultados abaixo foram informados por ele. O agente não viu o aparelho.
+- Compilação pelo GitHub Actions: check verde, informado pelo dono.
+- Instalação da 0.2.0: o dono precisou desinstalar a versão antiga antes. Causa desconhecida. A atualização por cima NÃO foi confirmada.
+- Botão DIAGNÓSTICO abre a tela de diagnóstico com dados: OK.
+- Linha Android: mostra "10.1" com API 25. Conclusão: Android real 7.1 (API 25), com texto de versão do fabricante.
+- Teste de root (botão TESTAR ACESSO ROOT): resultado "ROOT FUNCIONANDO": OK.
+
+Não conferido nesta rodada: RAM total, RAM disponível, armazenamento, kernel e ABIs (aparecem na tela, mas o dono não comparou com outra fonte); comportamento do teste de root quando a permissão é negada; consumo de memória do app.
+
+### 2026-10-26 — Estrutura mínima (Etapa 2, versão 0.1.0)
+Feito no TX9 real, pelo dono. Informado por ele.
 - APK instalado: OK.
 - App abre e mostra o título e os 5 botões: OK.
 - Setas movem o foco entre os botões, com borda amarela visível: OK.
 - OK no botão mostra o aviso "Esta função ainda não foi criada.": OK.
 - Voltar fecha o app: OK.
-- Compilação pelo GitHub Actions: check verde, informado pelo dono.
-
-Não testado nesta rodada: consumo de memória do app, tempo de abertura, comportamento com o app em segundo plano.
 
 ## Testes necessários no aparelho real (TX9)
-- O diagnóstico mostra valores que batem com o aparelho (Android, RAM, armazenamento, ABI).
-- O estado do root é detectado corretamente, com e sem permissão concedida.
+- Conferir RAM total, RAM disponível, armazenamento, kernel e ABIs da tela de diagnóstico com outra fonte.
+- Atualizar o app por cima, sem desinstalar, e anotar a mensagem exata se falhar.
+- Teste de root com a permissão negada.
 - O app funciona sem root e explica o que fica indisponível.
 - A simulação de limpeza não apaga nada.
 - A limpeza real mexe só nos arquivos permitidos.
