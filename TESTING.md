@@ -4,6 +4,16 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-27 — Sessão 5: tela LIMPEZA em simulação no TX9 (TX9 real, informado pelo dono)
+
+O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
+
+- Versão testada: 0.3.9.
+- O dono abriu LIMPEZA AVANÇADA, apertou simular e a tela mostrou números. O valor que ele informou: "1,4 MB".
+- NÃO conferido: se 1,4 MB é o total ou só uma parte (cache interno ou externo); se a tela mostrou lista de arquivos; se a tela avisou que nada foi apagado. O dono informou só o valor.
+- NÃO conferido: que o valor bate com o tamanho real do cache do app (Configurações do Android, Aplicativos, TX9 Booster).
+- Nada foi apagado de propósito: a tela é só simulação.
+
 ### 2026-10-27 — Sessão 5: atualização por cima com mudança real de código, 0.3.8 para 0.3.9 (TX9 real, informado pelo dono)
 
 O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
@@ -54,4 +64,4 @@ NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (H
 ## Pendências de registro
 
 - Este arquivo não tem os testes das Etapas 2 e 3 no TX9 (tela de Diagnóstico e teste de root), que o CHANGELOG cita. Eles não foram escritos aqui para não inventar. Se o dono tiver o texto antigo, ele pode ser acrescentado.
-- A tela LIMPEZA nunca foi testada no TX9.
+- A tela LIMPEZA foi aberta e simulada no TX9 na sessão 5 (resultado: 1,4 MB), mas faltam os detalhes da tela e a comparação com o tamanho real do cache.
