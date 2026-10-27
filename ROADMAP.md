@@ -5,17 +5,16 @@ Níveis de estado: Planejada, Em desenvolvimento, Implementada, Compilada, Testa
 Regra: não avançar para uma etapa que apaga coisas se a etapa anterior ainda tem falhas importantes.
 
 ## Etapa 1 — Planejamento e compatibilidade
-Estado: Em desenvolvimento.
-Fazer: criar repositório, arquivos de continuidade, escolher tecnologia, definir versão mínima do Android.
-Pronta quando: AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md e README.md existem no repositório.
+Estado: Aprovada (2026-10-26).
+Fez: repositório, arquivos de continuidade, escolha de tecnologia (Java), versão mínima do Android (5.0, API 21).
 
 ## Etapa 2 — Estrutura mínima funcional
-Estado: Planejada.
-Fazer: projeto Android com tela inicial, navegação por controle remoto, compilação automática do APK pelo GitHub Actions.
-Pronta quando: o GitHub Actions gera um APK de depuração sem erro, o dono baixa, instala no TX9 e o app abre.
+Estado: Testada no aparelho real (2026-10-26), resultado informado pelo dono.
+Fez: projeto Android com tela inicial, navegação por controle remoto, compilação automática do APK pelo GitHub Actions.
+Pendências: assinatura fixa para atualizar por cima do app instalado; ícone e banner do app.
 
 ## Etapa 3 — Diagnóstico
-Estado: Planejada.
+Estado: Planejada (próxima).
 Fazer: ler modelo, versão do Android e API, kernel, ABI, RAM total e livre, armazenamento total e livre, estado do root.
 Pronta quando: a tela mostra os valores reais do TX9 e o dono confirma que batem com o aparelho.
 
