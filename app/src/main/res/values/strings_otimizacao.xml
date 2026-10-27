@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="otim_titulo">OTIMIZAÇÃO RÁPIDA</string>
+    <string name="otim_aviso">Esta tela apaga o cache do próprio app e pede ao Android para encerrar apps de usuário que estão em segundo plano. Não mexe em apps do sistema. Não promete velocidade: mostra só números medidos.</string>
+    <string name="otim_botao">OTIMIZAR AGORA</string>
+    <string name="otim_conf_titulo">Otimizar agora?</string>
+    <string name="otim_conf_msg">Vou apagar o cache do próprio app e encerrar apps de usuário em segundo plano. Apps do sistema não são tocados. Continuar?</string>
+    <string name="otim_sim">SIM, OTIMIZAR</string>
+    <string name="otim_nao">CANCELAR</string>
+    <string name="otim_trabalhando">Otimizando... aguarde.</string>
+    <string name="otim_relatorio_titulo">RELATÓRIO DA OTIMIZAÇÃO</string>
+    <string name="otim_ram_antes">RAM livre antes: %1$s de %2$s</string>
+    <string name="otim_ram_depois">RAM livre depois: %1$s</string>
+    <string name="otim_ram_dif">Diferença na RAM livre: %1$s</string>
+    <string name="otim_disco_antes">Espaço livre antes: %1$s</string>
+    <string name="otim_disco_depois">Espaço livre depois: %1$s</string>
+    <string name="otim_cache">Cache do app apagado: %1$d arquivos, %2$s. Falhas: %3$d.</string>
+    <string name="otim_apps">Pedido de encerramento enviado para %1$d apps de usuário.</string>
+    <string name="otim_nota">O Android pode voltar a usar a RAM logo depois. Isso é normal.</string>
+</resources>
