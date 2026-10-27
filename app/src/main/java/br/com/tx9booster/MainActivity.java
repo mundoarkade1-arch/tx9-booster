@@ -21,7 +21,6 @@ public class MainActivity extends Activity {
         };
 
         findViewById(R.id.btnOtimizacao).setOnClickListener(emBreve);
-        findViewById(R.id.btnLimpeza).setOnClickListener(emBreve);
         findViewById(R.id.btnApps).setOnClickListener(emBreve);
         findViewById(R.id.btnHistorico).setOnClickListener(emBreve);
 
@@ -29,6 +28,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, DiagnosticoActivity.class));
+            }
+        });
+
+        findViewById(R.id.btnLimpeza).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LimpezaActivity.class));
             }
         });
     }
