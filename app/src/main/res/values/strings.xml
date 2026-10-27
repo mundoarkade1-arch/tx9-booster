@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TX9 Booster</string>
+    <string name="titulo">TX9 Booster</string>
+    <string name="subtitulo">Manutenção para o seu TV Box</string>
+    <string name="btn_otimizacao">OTIMIZAÇÃO RÁPIDA</string>
+    <string name="btn_limpeza">LIMPEZA AVANÇADA</string>
+    <string name="btn_apps">APLICATIVOS</string>
+    <string name="btn_diagnostico">DIAGNÓSTICO</string>
+    <string name="btn_historico">HISTÓRICO</string>
+    <string name="em_breve">Esta função ainda não foi criada.</string>
+    <string name="versao_texto">Versão 0.1.0 (estrutura inicial)</string>
+</resources>
