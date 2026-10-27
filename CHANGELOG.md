@@ -2,16 +2,19 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-26 — Sessão 2: conferência do GitHub Actions e documentação
+## 2026-10-26 — Sessão 2: conferência do repositório, testes e documentação
 
-- O dono conferiu a aba Actions: a execução mais recente está com check verde nas duas tarefas, Testes e Compilar APK. O PoliticaCaminhosTest passou no GitHub. Informado pelo dono, o agente não viu a tela.
-- Atualizados PROJECT_STATE.md, TESTING.md e ROADMAP.md com esse resultado.
+- O dono conferiu a aba Actions: execução com check verde nas duas tarefas, Testes e Compilar APK. Informado pelo dono, o agente não viu a tela.
+- O agente leu o código real e descobriu que a documentação estava atrasada: já existiam o Analisador (Analisador.java, somente leitura) e a tela LIMPEZA AVANÇADA em modo de simulação (LimpezaActivity.java), ligada ao botão LIMPEZA da tela inicial. Ela mede o cache interno e o cache externo do próprio app e nunca apaga nada.
+- AnalisadorTest.java ampliado de 6 para 10 testes. Novos: política nula, limite de 100 itens na lista com totais completos, parada por profundidade excessiva e link simbólico de pasta. Os 6 testes antigos não foram alterados. Execução verde, informado pelo dono.
+- Erro do agente, corrigido: confiou no PROJECT_STATE.md desatualizado e criou AnalisadorArquivos.java e AnalisadorArquivosTest.java, duplicados do Analisador e do AnalisadorTest. Os dois foram apagados depois de o agente ler o código real. Nenhum código funcional foi alterado ou perdido. Os dois estiveram no repositório por pouco tempo e nunca foram usados por nenhuma tela.
+- Atualizados PROJECT_STATE.md, TESTING.md, ROADMAP.md e CHANGELOG.md.
 - Registrada a ideia adiada de atualização do app (botão VERIFICAR ATUALIZAÇÃO), por decisão do dono: primeiro terminar a Etapa 4. Detalhes no ROADMAP.md.
-- Nenhum código foi alterado nesta sessão. Nenhuma função nova foi criada.
+- Nenhuma função de exclusão real foi criada.
 
 ## 2026-10-26 — Etapa 4 (início): trava de segurança da limpeza
 
-- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga. Ainda não é usada por nenhuma tela.
+- Criada a classe PoliticaCaminhos: decide se um caminho pode ser apagado. Só permite o que está dentro de uma área autorizada, a lista proibida vence, resolve ".." e links simbólicos e descarta áreas perigosas (/, /data, /system). Só avalia, nunca apaga.
 - Criado o teste JUnit PoliticaCaminhosTest.
 - app/build.gradle: adicionada a dependência de teste JUnit 4.13.2 (não entra no APK).
 - Workflow do GitHub Actions agora tem duas tarefas: Testes (gradle testDebugUnitTest) e Compilar APK (gradle assembleDebug).
