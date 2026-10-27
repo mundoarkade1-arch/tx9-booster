@@ -4,15 +4,30 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
-### 2026-10-27 — Sessão 5: tela LIMPEZA em simulação no TX9 (TX9 real, informado pelo dono)
+### 2026-10-27 — Sessão 5: exclusão real do cache do app, versão 0.4.0 (TX9 real, informado pelo dono)
 
 O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
 
-- Versão testada: 0.3.9.
-- O dono abriu LIMPEZA AVANÇADA, apertou simular e a tela mostrou números. O valor que ele informou: "1,4 MB".
-- NÃO conferido: se 1,4 MB é o total ou só uma parte (cache interno ou externo); se a tela mostrou lista de arquivos; se a tela avisou que nada foi apagado. O dono informou só o valor.
-- NÃO conferido: que o valor bate com o tamanho real do cache do app (Configurações do Android, Aplicativos, TX9 Booster).
-- Nada foi apagado de propósito: a tela é só simulação.
+- Versão 0.4.0 publicada: o dono informou verde no Actions depois de salvar os arquivos da exclusão e de subir a versão. A conferência direta da Release v0.4.0 na página Releases não foi respondida em separado; o dono atualizou o app pelo botão, o que só funciona com a Release existente.
+- Teste no TX9: o dono respondeu que fez todos os passos (atualizar pelo botão, abrir LIMPEZA AVANÇADA, SIMULAR, APAGAR CACHE DO APP, confirmar). Resultado informado: o cache do app ficou em ZERO depois de apagar. Esta é a primeira exclusão real do projeto.
+- NÃO conferido: os números de Antes, Apagados e Falhas do relatório; que apertar CANCELAR na pergunta realmente não apaga nada; que a tela inicial mostrou "Versão 0.4.0" (não foi lida em separado); o texto exato do relatório na tela.
+- NÃO conferido: a frase nova da mensagem de versão nova ("Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação."). O dono não contou o que leu.
+- NÃO conferido: que o app continua normal depois da limpeza em outras telas (Diagnóstico, atualização).
+
+### 2026-10-27 — Sessão 5: verificação do agente da exclusão real (ambiente simulado, NÃO é o TX9)
+
+- ExclusorCache testado com um script próprio do agente (Java, pastas falsas temporárias, fora do GitHub). 11 verificações, todas passaram: área válida; 3 arquivos apagados; 35 bytes liberados (soma certa); sem falhas; a própria pasta do cache continua existindo; arquivo apagado some; arquivo de fora da área fica intacto; link simbólico para fora é ignorado; área não autorizada: nada é apagado; área nula; política nula.
+- LimpezaActivity compilado pelo agente com classes falsas do Android (confere erros de escrita do código, não prova que funciona no Android).
+- Estes testes NÃO estão no repositório. Não existe ainda teste JUnit do ExclusorCache no GitHub Actions.
+
+### 2026-10-27 — Sessão 5: tela LIMPEZA em simulação no TX9, versão 0.3.9 (TX9 real, informado pelo dono)
+
+O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
+
+- O dono abriu LIMPEZA AVANÇADA, apertou simular e a tela mostrou números. O valor que ele informou: "1,4 MB". Ele também informou que a tela diz que nada foi apagado.
+- Pelo código do LimpezaActivity (lido pelo agente), o 1,4 MB é o total geral: cache interno mais cache externo do próprio app.
+- NÃO conferido: se a tela mostrou lista de arquivos; que o valor bate com o tamanho real do cache (Configurações do Android, Aplicativos, TX9 Booster).
+- Nada foi apagado: nessa versão a tela era só simulação.
 
 ### 2026-10-27 — Sessão 5: atualização por cima com mudança real de código, 0.3.8 para 0.3.9 (TX9 real, informado pelo dono)
 
@@ -21,7 +36,6 @@ O agente não viu o aparelho; o resultado foi informado pelo dono, que respondeu
 - Versão 0.3.9 publicada: o dono informou verde no Actions e a Release v0.3.9 existe na página Releases, com o .apk. O strings.xml (versao_texto) foi salvo antes do build.gradle, para a Release sair já com o texto certo.
 - 0.3.8 -> 0.3.9 pelo botão VERIFICAR ATUALIZAÇÃO do próprio app, por cima, sem desinstalar: OK. O dono disse "deu certo" e confirmou que a tela inicial mostra "Versão 0.3.9".
 - Esta foi a "próxima prova" pedida na sessão 4: atualização por cima com mudança real de código, já com a chave própria. Passou.
-- NÃO conferido: a frase nova da mensagem de versão nova ("Aperte de novo o botão VERIFICAR ATUALIZAÇÃO para baixar e instalar. O Android vai pedir a sua confirmação."). O dono respondeu que não leu a mensagem. Só vale como conferida quando ele ler na tela, numa próxima atualização.
 - A causa exata do erro antigo continua NÃO provada. Duas atualizações por cima seguidas funcionaram com a chave própria (0.3.7 para 0.3.8 e 0.3.8 para 0.3.9), mas isso não explica por que a 0.3.7 entrou por cima da 0.3.5.
 - Sobre a pendência anterior ("guardar o tx9booster.jks"): ainda não foi confirmado pelo dono que ele guardou a cópia da chave.
 
@@ -64,4 +78,5 @@ NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (H
 ## Pendências de registro
 
 - Este arquivo não tem os testes das Etapas 2 e 3 no TX9 (tela de Diagnóstico e teste de root), que o CHANGELOG cita. Eles não foram escritos aqui para não inventar. Se o dono tiver o texto antigo, ele pode ser acrescentado.
-- A tela LIMPEZA foi aberta e simulada no TX9 na sessão 5 (resultado: 1,4 MB), mas faltam os detalhes da tela e a comparação com o tamanho real do cache.
+- Faltam os números do relatório da exclusão real (Antes, Apagados, Falhas), o teste do CANCELAR e a leitura da frase nova da mensagem de versão nova.
+- Não existe teste JUnit do ExclusorCache no GitHub Actions.
