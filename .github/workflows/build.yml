@@ -18,6 +18,12 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Instalar a chave de depuracao fixa
+        run: |
+          mkdir -p ~/.android
+          base64 -d debug.keystore.b64 > ~/.android/debug.keystore
+          keytool -list -keystore ~/.android/debug.keystore -storepass android
+
       - name: Instalar Gradle 8.5
         uses: gradle/actions/setup-gradle@v4
         with:
