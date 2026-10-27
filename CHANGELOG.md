@@ -2,14 +2,18 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-26 — Sessão 2: conferência do repositório, testes e documentação
+## 2026-10-26 — Sessão 2: atualização do app (versão 0.3.0) e documentação
 
-- O dono conferiu a aba Actions: execução com check verde nas duas tarefas, Testes e Compilar APK. Informado pelo dono, o agente não viu a tela.
-- O agente leu o código real e descobriu que a documentação estava atrasada: já existiam o Analisador (Analisador.java, somente leitura) e a tela LIMPEZA AVANÇADA em modo de simulação (LimpezaActivity.java), ligada ao botão LIMPEZA da tela inicial. Ela mede o cache interno e o cache externo do próprio app e nunca apaga nada.
-- AnalisadorTest.java ampliado de 6 para 10 testes. Novos: política nula, limite de 100 itens na lista com totais completos, parada por profundidade excessiva e link simbólico de pasta. Os 6 testes antigos não foram alterados. Execução verde, informado pelo dono.
-- Erro do agente, corrigido: confiou no PROJECT_STATE.md desatualizado e criou AnalisadorArquivos.java e AnalisadorArquivosTest.java, duplicados do Analisador e do AnalisadorTest. Os dois foram apagados depois de o agente ler o código real. Nenhum código funcional foi alterado ou perdido. Os dois estiveram no repositório por pouco tempo e nunca foram usados por nenhuma tela.
-- Atualizados PROJECT_STATE.md, TESTING.md, ROADMAP.md e CHANGELOG.md.
-- Registrada a ideia adiada de atualização do app (botão VERIFICAR ATUALIZAÇÃO), por decisão do dono: primeiro terminar a Etapa 4. Detalhes no ROADMAP.md.
+- Conferido o repositório real: já existiam Analisador (somente leitura) e a tela LIMPEZA em modo de simulação (LimpezaActivity). A documentação estava atrasada e foi corrigida.
+- AnalisadorTest ampliado de 6 para 10 testes (política nula, limite de 100 itens com totais completos, parada por profundidade, link simbólico de pasta). Os 6 antigos não foram alterados.
+- Erro do agente, corrigido: criou AnalisadorArquivos.java e AnalisadorArquivosTest.java, duplicados de arquivos que já existiam; os dois foram apagados depois de o agente ler o código real. Nenhum código funcional foi perdido.
+- Nova função, aprovada pelo dono: atualização do app. AndroidManifest.xml ganhou a permissão INTERNET. Novo VerificadorAtualizacao.java (consulta a Release mais recente do repositório, só https e só endereços do repositório, tempo limite de 8 segundos, resposta limitada, sem redirecionamentos). Novo VerificadorAtualizacaoTest.java (11 testes, sem internet). Novo strings_atualizacao.xml. activity_main.xml ganhou o botão VERIFICAR ATUALIZAÇÃO (btnAtualizar) e uma linha de aviso escondida (txtAtualizacao). MainActivity.java ganhou a checagem silenciosa ao abrir o app e o botão. O app não instala nada sozinho.
+- app/build.gradle: versionCode 3, versionName 0.3.0.
+- .github/workflows/build.yml: terceira tarefa "Publicar Release" (depende de Testes e Compilar APK, só em push no main; cria a Release vX.Y.Z com o APK se ela ainda não existir). As duas tarefas antigas não foram alteradas.
+- O dono informou check verde depois de cada mudança, inclusive nos três blocos após o build.yml. O agente não viu as telas.
+- NÃO confirmado: a Release v0.3.0 existe de fato; a função de atualização no TX9; a tela LIMPEZA no TX9.
+- AGENTS.md: a regra "não depender de internet" ganhou a exceção aprovada da verificação de atualização.
+- Atualizados PROJECT_STATE.md, TESTING.md, ROADMAP.md, README.md e AGENTS.md.
 - Nenhuma função de exclusão real foi criada.
 
 ## 2026-10-26 — Etapa 4 (início): trava de segurança da limpeza
@@ -27,7 +31,7 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - O botão DIAGNÓSTICO da tela inicial abre a nova tela.
 - Versão do app: versionCode 2, versionName 0.2.0.
 - Testado no TX9 pelo dono: a tela abre com os dados, o Android aparece como "10.1" com API 25 (Android 7.1 real) e o teste de root retornou "ROOT FUNCIONANDO".
-- Problema em aberto: o dono precisou desinstalar o app antigo antes de instalar a 0.2.0. Causa desconhecida.
+- Problema em aberto: o dono precisou desinstalar o app antigo antes de instalar a 0.2.0. Causa desconhecida (suspeita: a 0.1.0 foi compilada antes da chave fixa).
 
 ## 2026-10-26 — Assinatura fixa de depuração
 
