@@ -4,6 +4,11 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-26 — Trava de segurança PoliticaCaminhos (Etapa 4)
+Ambiente simulado, feito pelo agente (Linux, script próprio, fora do GitHub): 19 verificações, todas passaram. Casos: arquivo dentro da área, caminho inexistente dentro da área, raiz da área negada, pasta irmã com mesmo prefixo negada, fora da área negado, escape com "..", link simbólico para fora, /system, /data exato, /data/system, "/", /sdcard, caminho nulo, áreas perigosas descartadas, cache do próprio app permitido e de outro app negado.
+O arquivo JUnit equivalente (PoliticaCaminhosTest) foi escrito, mas NÃO foi executado pelo agente. O resultado da tarefa "Testes" no GitHub Actions ainda não foi conferido.
+Não testado no TX9.
+
 ### 2026-10-26 — Diagnóstico e root (Etapa 3, versão 0.2.0)
 Feito no TX9 real, pelo dono. Os resultados abaixo foram informados por ele. O agente não viu o aparelho.
 - Compilação pelo GitHub Actions: check verde, informado pelo dono.
@@ -22,8 +27,9 @@ Feito no TX9 real, pelo dono. Informado por ele.
 - OK no botão mostra o aviso "Esta função ainda não foi criada.": OK.
 - Voltar fecha o app: OK.
 
-## Testes necessários no aparelho real (TX9)
-- Conferir RAM total, RAM disponível, armazenamento, kernel e ABIs da tela de diagnóstico com outra fonte.
+## Testes necessários
+- Conferir a tarefa "Testes" do GitHub Actions (resultado do PoliticaCaminhosTest).
+- Conferir RAM total, RAM disponível, armazenamento, kernel e ABIs da tela de diagnóstico com outra fonte, no TX9.
 - Atualizar o app por cima, sem desinstalar, e anotar a mensagem exata se falhar.
 - Teste de root com a permissão negada.
 - O app funciona sem root e explica o que fica indisponível.
@@ -31,12 +37,6 @@ Feito no TX9 real, pelo dono. Informado por ele.
 - A limpeza real mexe só nos arquivos permitidos.
 - O relatório antes e depois mostra números medidos.
 - Consumo de memória do próprio app em uso.
-
-## Testes automatizados planejados (ambiente simulado)
-- Validação de caminhos permitidos e proibidos (a lista proibida vence).
-- Bloqueio de caminhos fora da área permitida e de links simbólicos.
-- Classificação das operações.
-- Interpretação dos resultados e dos códigos de saída.
 
 ## Limitações
 - Compilar não prova que a função é segura no firmware do TX9.
