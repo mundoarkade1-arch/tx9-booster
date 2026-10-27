@@ -84,6 +84,27 @@
             android:textColor="#FFFFFF"
             android:textSize="28sp" />
 
+        <Button
+            android:id="@+id/btnAtualizar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/botao_fundo"
+            android:focusable="true"
+            android:text="@string/atu_botao"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/txtAtualizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:textColor="#FFEB3B"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
