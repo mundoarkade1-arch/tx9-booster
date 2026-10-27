@@ -2,6 +2,27 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-27 — Sessão 4: chave própria de assinatura (versões 0.3.5 a 0.3.8)
+
+- Lido o build.yml. Todas as tarefas usavam o mesmo APK, assinado com a chave pública de depuração. A hipótese "cada tarefa usa uma chave" não se confirmou.
+- 0.3.5 e 0.3.6: só aumento de versão. O dono desinstalou o app, instalou a 0.3.5 pela página Releases e tentou atualizar para a 0.3.6 por cima. O Android recusou de novo: "O app não foi instalado. Já existe um pacote com esse mesmo nome."
+- O dono criou a chave própria no PowerShell (arquivo tx9booster.jks, alias tx9booster) e cadastrou sozinho os Secrets TX9_KEYSTORE_BASE64 e TX9_SENHA no GitHub. O agente não viu os valores.
+- 0.3.7: build.yml reescrito (a tarefa "Compilar APK" instala a chave própria a partir dos Secrets e falha se faltarem; não usa mais debug.keystore.b64). app/build.gradle ganhou signingConfigs "proprio", usado no build debug quando as variáveis TX9_KEYSTORE_ARQUIVO e TX9_KEYSTORE_SENHA existem. A 0.3.7 instalou por cima da 0.3.5 sem desinstalar.
+- 0.3.8: strings.xml corrigido (versao_texto estava escrito à mão como 0.3.4). Atualização por cima pelo botão do próprio app, da 0.3.7 para a 0.3.8, FUNCIONOU no TX9 e a tela inicial mostrou "Versão 0.3.8".
+- Causa exata do erro antigo NÃO provada. O problema sumiu com a chave própria.
+- CHANGELOG.md: a entrada da sessão 3 estava no fim do arquivo, com um "- " na frente do título. Foi movida para o lugar certo.
+- Atualizados PROJECT_STATE.md e CHANGELOG.md.
+
+## 2026-10-27 — Sessão 3: atualização pelo próprio app (versões 0.3.1 a 0.3.4)
+
+- 0.3.1: rodapé da tela inicial corrigido para a versão certa.
+- 0.3.2: o botão VERIFICAR ATUALIZAÇÃO passa a baixar o APK sem abrir o navegador (primeira versão, pelo gerenciador de downloads do Android). Textos novos em strings_instalacao.xml e permissão REQUEST_INSTALL_PACKAGES.
+- 0.3.3: download refeito no jeito do app asc-tvbox: classe InstaladorAtualizacao, FileProvider, file_paths.xml, androidx.core 1.12.0 e android.useAndroidX=true. Mostra a porcentagem do download.
+- 0.3.4: só aumento de versão, para testar a atualização por cima.
+- PROBLEMA ABERTO (resolvido na sessão 4): o Android recusava instalar por cima ("já existe um pacote com esse mesmo nome"). Ver PROJECT_STATE.md.
+- Criados AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md e README.md.
+- Decisão: versão mínima do Android 5.0 (API 21), para servir ao Android 7.1 e ao 10.
+
 ## 2026-10-26 — Sessão 2: atualização do app (versão 0.3.0) e documentação
 
 - Conferido o repositório real: já existiam Analisador (somente leitura) e a tela LIMPEZA em modo de simulação (LimpezaActivity). A documentação estava atrasada e foi corrigida.
@@ -47,13 +68,3 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 ## 2026-10-26 — Etapa 1: planejamento
 
 - Repositório tx9-booster criado pelo dono no GitHub.
-
-- ## 2026-10-27 — Sessão 3: atualização pelo próprio app (versões 0.3.1 a 0.3.4)
-
-- 0.3.1: rodapé da tela inicial corrigido para a versão certa.
-- 0.3.2: o botão VERIFICAR ATUALIZAÇÃO passa a baixar o APK sem abrir o navegador (primeira versão, pelo gerenciador de downloads do Android). Textos novos em strings_instalacao.xml e permissão REQUEST_INSTALL_PACKAGES.
-- 0.3.3: download refeito no jeito do app asc-tvbox: classe InstaladorAtualizacao, FileProvider, file_paths.xml, androidx.core 1.12.0 e android.useAndroidX=true. Mostra a porcentagem do download.
-- 0.3.4: só aumento de versão, para testar a atualização por cima.
-- PROBLEMA ABERTO: o Android recusa instalar por cima ("já existe um pacote com esse mesmo nome"). Provável diferença de assinatura entre os APKs. Ver PROJECT_STATE.md.
-- Criados AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md e README.md.
-- Decisão: versão mínima do Android 5.0 (API 21), para servir ao Android 7.1 e ao 10.
