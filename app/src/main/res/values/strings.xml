@@ -9,5 +9,10 @@
     <string name="btn_diagnostico">DIAGNÓSTICO</string>
     <string name="btn_historico">HISTÓRICO</string>
     <string name="em_breve">Esta função ainda não foi criada.</string>
-    <string name="versao_texto">Versão 0.1.0 (estrutura inicial)</string>
+    <string name="versao_texto">Versão 0.2.0 (diagnóstico)</string>
+
+    <string name="diag_titulo">Diagnóstico</string>
+    <string name="diag_subtitulo">Valores lidos agora do seu aparelho</string>
+    <string name="diag_btn_root">TESTAR ACESSO ROOT</string>
+    <string name="diag_root_titulo">Root</string>
 </resources>
