@@ -29,9 +29,15 @@ public class MainActivity extends Activity {
             }
         };
 
-        findViewById(R.id.btnOtimizacao).setOnClickListener(emBreve);
         findViewById(R.id.btnApps).setOnClickListener(emBreve);
         findViewById(R.id.btnHistorico).setOnClickListener(emBreve);
+
+        findViewById(R.id.btnOtimizacao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, OtimizacaoActivity.class));
+            }
+        });
 
         findViewById(R.id.btnDiagnostico).setOnClickListener(new View.OnClickListener() {
             @Override
