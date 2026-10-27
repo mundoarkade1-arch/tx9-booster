@@ -2,6 +2,18 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-27 — Sessão 6: ExclusorCacheTest e versão 0.4.1 (textos da limpeza corrigidos)
+
+- ExclusorCacheTest.java criado em app/src/test/java/br/com/tx9booster/ (JUnit 4.13.2, 7 testes, pastas falsas temporárias): apaga arquivos e subpastas e mantém a pasta do cache; soma os bytes certos; pasta vazia; área fora da política; link simbólico ignorado (pula, não falha, se o ambiente não deixar criar link); área nula ou inexistente; política nula. O agente conferiu que os nomes dos campos batem com o ExclusorCache.java. O dono informou Actions verde. Não cria Release. Não conferido: se o teste do link rodou ou foi pulado.
+- O estilo do teste não foi trocado para o do PoliticaCaminhosTest (que usa TemporaryFolder). O ExclusorCacheTest cria e apaga a pasta temporária por conta própria. Os dois funcionam; código salvo e verde ficou como está.
+- strings_simulacao.xml: simul_subtitulo mudou de "Modo de simulação" para "Simular e apagar o cache do app"; simul_aviso mudou de "Esta tela só mede e mostra. Nenhum arquivo é apagado." (que ficou falso com o botão APAGAR) para "O botão SIMULAR só mede e mostra. Ele não apaga nada." O resto do arquivo ficou igual. strings_exclusao.xml foi lido e não precisou mudar.
+- 0.4.1: versionCode 14 e versionName 0.4.1 em app/build.gradle; versao_texto em strings.xml mudou para "Versão 0.4.1 (textos da limpeza corrigidos)". O strings.xml foi salvo antes do build.gradle. O dono informou Actions verde e Release 0.4.1 na página Releases.
+- Nenhum código Java do app mudou na 0.4.1: só textos.
+- NÃO conferido no TX9: instalar a 0.4.1 pelo botão; a versão na tela inicial; os textos novos da tela LIMPEZA. O dono disse que testa depois.
+- Números do relatório (Antes, Apagados, Depois, Falhas): o dono adiou. NÃO conferidos. Teste do CANCELAR e frase da mensagem de versão nova: ainda não perguntados.
+- Chave de assinatura: o dono colou o arquivo e a senha só nos Secrets do GitHub e disse que NÃO tem a senha em mãos. Os Secrets não podem ser lidos de volta. Orientações dadas: não guardar a chave no GitHub (repositório público); procurar a senha na conversa da sessão 4, no histórico do PowerShell ou em anotações; se não achar, criar chave nova (desinstalar o app e instalar de novo uma vez). O dono adiou o assunto.
+- Atualizados PROJECT_STATE.md, CHANGELOG.md e TESTING.md. README.md e ROADMAP.md não foram lidos nesta sessão.
+
 ## 2026-10-27 — Sessão 5: documentos corrigidos, versões 0.3.9 e 0.4.0 (exclusão real do cache do app)
 
 - README.md reescrito: versão 0.3.8, instalação pela página Releases, atualização pelo botão do próprio app, chave de assinatura própria. A seção antiga sobre instalar pelo zip do Actions saiu.
@@ -17,7 +29,7 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - Teste no TX9 (informado pelo dono, que respondeu que fez todos os passos): atualizou pelo botão do app, abriu LIMPEZA, simulou, apagou e o cache ficou em ZERO.
 - NÃO conferido: os números de Antes, Apagados e Falhas do relatório; que CANCELAR não apaga; que a tela inicial mostrou "Versão 0.4.0" (não foi lida em separado); a frase nova da mensagem de versão nova (o dono não contou o que leu).
 - Causa exata do erro antigo da atualização continua NÃO provada.
-- Falta: teste JUnit do ExclusorCache no GitHub Actions.
+- Falta: teste JUnit do ExclusorCache no GitHub Actions. (Feito na sessão 6.)
 - Atualizados PROJECT_STATE.md, CHANGELOG.md, TESTING.md, README.md e ROADMAP.md.
 - As cópias do GitHub que o agente conseguiu abrir estavam velhas (README e PROJECT_STATE antigos). O agente usou o texto que o dono colou.
 
