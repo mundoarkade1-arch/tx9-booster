@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="simul_titulo">LIMPEZA AVANÇADA</string>
+    <string name="simul_subtitulo">Modo de simulação</string>
+    <string name="simul_aviso">Esta tela só mede e mostra. Nenhum arquivo é apagado.</string>
+    <string name="simul_btn">SIMULAR LIMPEZA</string>
+    <string name="simul_aguardando">Aperte o botão para simular a limpeza do cache do próprio app.</string>
+    <string name="simul_analisando">Analisando...</string>
+    <string name="simul_area">Área: %1$s</string>
+    <string name="simul_area_invalida">Não analisada: a área não é autorizada pela trava de segurança ou não existe.</string>
+    <string name="simul_arquivos">Arquivos que seriam apagados: %1$d\nEspaço que seria liberado: %2$s</string>
+    <string name="simul_ignorados">Itens pulados pela trava: %1$d</string>
+    <string name="simul_truncado">A análise parou no limite de segurança. O total real pode ser maior.</string>
+    <string name="simul_total">Total geral que seria liberado: %1$s\nNADA foi apagado.</string>
+    <string name="simul_lista_titulo">Primeiros arquivos encontrados:</string>
+</resources>
