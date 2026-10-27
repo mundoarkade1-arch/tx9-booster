@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inst_baixando">Baixando a atualização. Aguarde.</string>
+    <string name="inst_pronto">Download pronto. Quando o Android perguntar, toque em Instalar.</string>
+    <string name="inst_erro">Não foi possível baixar: %1$s</string>
+    <string name="inst_sem_permissao">Libere a instalação de apps de fontes desconhecidas para o TX9 Booster nas configurações do Android. Depois aperte o botão de novo.</string>
+    <string name="inst_recusada">O Android recusou a instalação: %1$s</string>
+</resources>
