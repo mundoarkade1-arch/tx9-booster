@@ -116,4 +116,69 @@ public class AnalisadorTest {
         assertEquals(1, r.ignorados);
         assertTrue(fora.exists());
     }
+
+    @Test
+    public void politicaNulaNaoAnalisaNada() throws IOException {
+        File area = pasta.newFolder("area");
+        escrever(new File(area, "a.tmp"), 10);
+
+        Analisador.Resultado r = new Analisador(null).analisar(area);
+
+        assertFalse(r.areaValida);
+        assertEquals(0, r.totalArquivos);
+        assertEquals(0L, r.totalBytes);
+    }
+
+    @Test
+    public void listaTemLimiteDeItensMasOsTotaisContamTudo() throws IOException {
+        File area = pasta.newFolder("area");
+        int quantidade = Analisador.MAX_ITENS_NA_LISTA + 5;
+        for (int i = 0; i < quantidade; i++) {
+            escrever(new File(area, "f" + i + ".tmp"), 2);
+        }
+
+        Analisador.Resultado r = criar(area).analisar(area);
+
+        assertEquals(Analisador.MAX_ITENS_NA_LISTA, r.itens.size());
+        assertEquals(quantidade, r.totalArquivos);
+        assertEquals(quantidade * 2L, r.totalBytes);
+        assertFalse(r.truncado);
+    }
+
+    @Test
+    public void paraQuandoAsPastasSaoFundasDemais() throws IOException {
+        File area = pasta.newFolder("area");
+        File fundo = area;
+        for (int i = 0; i < Analisador.MAX_PROFUNDIDADE + 3; i++) {
+            fundo = new File(fundo, "d");
+        }
+        assertTrue(fundo.mkdirs());
+        escrever(new File(fundo, "fundo.tmp"), 7);
+
+        Analisador.Resultado r = criar(area).analisar(area);
+
+        assertTrue(r.areaValida);
+        assertTrue(r.truncado);
+    }
+
+    @Test
+    public void linkSimbolicoParaPastaEIgnorado() throws IOException {
+        File area = pasta.newFolder("area");
+        File foraPasta = pasta.newFolder("foraPasta");
+        escrever(new File(foraPasta, "segredo.tmp"), 100);
+        escrever(new File(area, "real.tmp"), 7);
+        File atalho = new File(area, "atalhoPasta");
+        try {
+            Files.createSymbolicLink(atalho.toPath(), foraPasta.toPath());
+        } catch (Exception e) {
+            Assume.assumeNoException(e);
+        }
+
+        Analisador.Resultado r = criar(area).analisar(area);
+
+        assertEquals(1, r.totalArquivos);
+        assertEquals(7L, r.totalBytes);
+        assertEquals(1, r.ignorados);
+        assertTrue(new File(foraPasta, "segredo.tmp").exists());
+    }
 }
