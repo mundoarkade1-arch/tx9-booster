@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="exc_btn">APAGAR CACHE DO APP</string>
+    <string name="exc_aviso">SIMULAR não apaga nada. Depois de simular, o botão APAGAR CACHE DO APP apaga só o cache do próprio TX9 Booster, e só depois da sua confirmação.</string>
+    <string name="exc_apagando">Apagando o cache do app...</string>
+    <string name="exc_confirma_titulo">Apagar o cache do app?</string>
+    <string name="exc_confirma_msg">Vai apagar cerca de %1$s do cache do próprio TX9 Booster. Nada de outros aplicativos será apagado. Quer continuar?</string>
+    <string name="exc_confirma_sim">APAGAR</string>
+    <string name="exc_confirma_nao">CANCELAR</string>
+    <string name="exc_relatorio_titulo">Relatório da limpeza (números medidos)</string>
+    <string name="exc_antes">Antes: %1$d arquivos, %2$s</string>
+    <string name="exc_apagados">Apagados: %1$d arquivos, %2$s liberados</string>
+    <string name="exc_depois">Depois: %1$d arquivos, %2$s</string>
+    <string name="exc_falhas">Falhas ao apagar: %1$d</string>
+    <string name="exc_ignorados">Itens ignorados: %1$d</string>
+    <string name="exc_limite">Atenção: a medição parou em um limite de segurança. Os números podem estar incompletos.</string>
+    <string name="exc_nenhuma_area">Nenhuma área de cache válida. Nada foi apagado.</string>
+</resources>
