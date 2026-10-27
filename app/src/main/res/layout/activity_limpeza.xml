@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="@string/simul_aviso"
+            android:text="@string/exc_aviso"
             android:textColor="#FFEB3B"
             android:textSize="22sp" />
 
@@ -46,6 +46,18 @@
             android:textSize="28sp">
             <requestFocus />
         </Button>
+
+        <Button
+            android:id="@+id/btnApagar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/botao_fundo"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/exc_btn"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/txtSimulResultado"
