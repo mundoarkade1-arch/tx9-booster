@@ -22,15 +22,19 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        View.OnClickListener emBreve = new View.OnClickListener() {
+        findViewById(R.id.btnHistorico).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, R.string.em_breve, Toast.LENGTH_SHORT).show();
             }
-        };
+        });
 
-        findViewById(R.id.btnApps).setOnClickListener(emBreve);
-        findViewById(R.id.btnHistorico).setOnClickListener(emBreve);
+        findViewById(R.id.btnApps).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AppsActivity.class));
+            }
+        });
 
         findViewById(R.id.btnOtimizacao).setOnClickListener(new View.OnClickListener() {
             @Override
