@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="simul_titulo">LIMPEZA AVANÇADA</string>
-    <string name="simul_subtitulo">Modo de simulação</string>
-    <string name="simul_aviso">Esta tela só mede e mostra. Nenhum arquivo é apagado.</string>
+    <string name="simul_subtitulo">Simular e apagar o cache do app</string>
+    <string name="simul_aviso">O botão SIMULAR só mede e mostra. Ele não apaga nada.</string>
     <string name="simul_btn">SIMULAR LIMPEZA</string>
     <string name="simul_aguardando">Aperte o botão para simular a limpeza do cache do próprio app.</string>
     <string name="simul_analisando">Analisando...</string>
