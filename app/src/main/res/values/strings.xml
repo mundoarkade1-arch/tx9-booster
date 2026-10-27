@@ -9,7 +9,7 @@
     <string name="btn_diagnostico">DIAGNÓSTICO</string>
     <string name="btn_historico">HISTÓRICO</string>
     <string name="em_breve">Esta função ainda não foi criada.</string>
-    <string name="versao_texto">Versão 0.3.8 (limpeza simulada)</string>
+    <string name="versao_texto">Versão 0.3.9 (limpeza simulada)</string>
 
     <string name="diag_titulo">Diagnóstico</string>
     <string name="diag_subtitulo">Valores lidos agora do seu aparelho</string>
