@@ -4,6 +4,13 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-30 — Núcleo root, Histórico e Laboratório (Codespaces e Actions)
+
+- JUnit executado manualmente com JDK 17 e JUnit 4.13.2 para `ComandosRoot`, `RootShell`, `Historico` e `Reversor`: 16 testes passaram, cobrindo validação contra injeção, lista de chaves de leitura, confirmação de root, política padrão que nega pacotes, registro antes da ação, persistência do Histórico, reversão individual e total e recusa quando o estado diverge.
+- `gradle testDebugUnitTest` foi tentado no Codespaces e não iniciou: falta Android SDK (`ANDROID_HOME` ou `sdk.dir`). Isso não é falha de teste. A compilação/execução Gradle completa depende do Actions.
+- `gh run watch 41062735314`: workflow do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` terminou com sucesso. Esse commit antecedeu a adição do 16º teste e a última alteração no texto do Histórico; o push da versão 0.7.0 deve validar a árvore final.
+- Nenhuma tela ou função da Etapa A foi testada no TX9. Nenhum resultado de aparelho foi informado pelo dono nesta etapa.
+
 ### 2026-10-27 — Sessão 6: textos da limpeza corrigidos, versão 0.4.1 (informado pelo dono)
 
 O agente não viu o aparelho nem o GitHub; o resultado foi informado pelo dono, que respondeu a perguntas numeradas.
@@ -97,5 +104,5 @@ NÃO coberto por teste automático: a parte de rede do VerificadorAtualizacao (H
 ## Pendências de registro
 
 - Este arquivo não tem os testes das Etapas 2 e 3 no TX9 (tela de Diagnóstico e teste de root), que o CHANGELOG cita. Eles não foram escritos aqui para não inventar. Se o dono tiver o texto antigo, ele pode ser acrescentado.
-- Faltam: os números do relatório da exclusão real (Antes, Apagados, Depois, Falhas), o teste do CANCELAR, a leitura da frase nova da mensagem de versão nova e o teste da 0.4.1 no TX9.
+- Permanecem pendências antigas da limpeza 0.4.0/0.4.1: conferir o relatório no TX9, o comportamento de CANCELAR e os textos. Elas não são testes da Etapa A.
 - O teste do link simbólico do ExclusorCacheTest: não se sabe se rodou ou foi pulado.

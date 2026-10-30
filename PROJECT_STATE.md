@@ -1,6 +1,6 @@
 # PROJECT_STATE.md — Estado atual do projeto
 
-Última atualização: 2026-10-27 (sessão 6, depois da versão 0.4.1)
+Última atualização: 2026-10-30 (Etapa A, versão 0.7.0 em preparação)
 
 ## Projeto
 
@@ -8,26 +8,31 @@ TX9 Booster: app Android (Java, androidx.core só para FileProvider) de manuten�
 
 ## Versão atual
 
-0.4.1 (versionCode 14). O dono informou Actions verde e Release 0.4.1 na página Releases. NÃO conferido no TX9: instalação da 0.4.1 e os textos novos na tela. A 0.4.1 só mudou textos (strings_simulacao.xml e versao_texto); nenhum código Java mudou desde a 0.4.0.
+Versão-base confirmada no commit de origem: 0.6.0 (versionCode 16). A Etapa A foi implementada e compilada no Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` (execução 41062735314, sucesso). Os arquivos da versão 0.7.0 estão em preparação; a Release 0.7.0 ainda não foi confirmada.
 
 ## O que existe
 
-Tela inicial, Diagnóstico, teste de root, atualização pelo próprio app, tela LIMPEZA com SIMULAR (nunca apaga) e APAGAR CACHE DO APP (exclusão real, só do cache do próprio app, com confirmação e relatório Antes/Apagados/Depois).
+O app tem tela inicial, Diagnóstico, teste de root, atualização pelo próprio app, limpeza do cache do próprio app, otimização atual e lista somente leitura de aplicativos. Desde a Etapa A, HISTÓRICO lê ações de um arquivo privado e oferece reversão de ações compatíveis; LABORATÓRIO mostra interruptores avançados desligados por padrão e bloqueados até confirmar root.
 
-## Exclusão real (0.4.0)
+## Etapa A — Núcleo root
 
-- ExclusorCache.java: apaga só dentro das áreas autorizadas pela PoliticaCaminhos, cada arquivo passa pela trava, nunca apaga a pasta do cache, ignora links simbólicos, soma como "liberado" só o que foi apagado.
-- Testada no TX9 pelo dono: cache ficou em ZERO.
-- NÃO conferido: números de Antes, Apagados, Depois e Falhas (o dono adiou); que CANCELAR não apaga (ainda não perguntado); texto exato do relatório; a frase da mensagem de versão nova (ainda não perguntado).
-- ExclusorCacheTest (JUnit, 7 testes, pastas falsas) criado na sessão 6. O dono informou verde no Actions. Não é teste no TX9. Não se sabe se o teste do link simbólico rodou ou foi pulado.
+- `RootShell` executa apenas comandos produzidos por `ComandosRoot`, com timeout, captura separada de stdout/stderr e código de saída tipado. O teste de root exige `uid=0`.
+- Mutação de pacote exige registro prévio no Histórico, root confirmado, leitura do estado real antes e confirmação depois. A política padrão nega todos os pacotes até existir inventário real e lista de proteção da Etapa B.
+- `Historico` usa arquivo texto append-only em `getFilesDir()` e guarda data/hora, ação, alvo, valores original/novo, resultado e inverso.
+- `Reversor` confere o estado antes de reverter uma ação, grupo ou todas as ações elegíveis; para no primeiro estado divergente.
+- HISTÓRICO e LABORATÓRIO foram ligados à tela inicial. Nenhuma função avançada foi validada no TX9. Os interruptores não executam ações por si mesmos.
+- 16 testes JUnit novos passaram em execução JVM manual no Codespaces. O Gradle local não iniciou a tarefa por falta de Android SDK. A execução Actions indicada acima compilou o commit de origem; a versão 0.7.0 terá uma nova execução antes da Release.
 
-## Textos da tela LIMPEZA (0.4.1)
+## Funções anteriores
 
-simul_subtitulo: "Simular e apagar o cache do app". simul_aviso: "O botão SIMULAR só mede e mostra. Ele não apaga nada." Nada mais mudou em strings_simulacao.xml. strings_exclusao.xml foi lido e está certo.
+- Limpeza real continua restrita ao cache do próprio app, com simulação, confirmação e política de caminhos.
+- A otimização existente atua no cache do app e solicita ao Android encerrar processos de apps de usuário; não é uma função root.
+- A lista de aplicativos continua somente leitura. Nenhum pacote do TX9 foi inventariado ou classificado nesta etapa.
+- Resultados anteriores no aparelho são os descritos no histórico abaixo e foram informados pelo dono; a Etapa A ainda não foi testada no TX9.
 
 ## Atualização do app
 
-- Funciona. Testada no TX9: 0.3.7 para 0.3.8, 0.3.8 para 0.3.9 e 0.3.9 para 0.4.0, pelo botão, por cima. A 0.4.1 ainda não foi instalada no TX9 (o dono testa depois).
+- O fluxo de atualização foi testado em versões anteriores no TX9, conforme os registros históricos. A instalação da versão 0.7.0 ainda não foi testada no TX9.
 - Assinatura com chave própria desde a 0.3.7 (tx9booster.jks, alias tx9booster; Secrets TX9_KEYSTORE_BASE64 e TX9_SENHA).
 - Causa exata da recusa antiga NÃO provada.
 
@@ -37,26 +42,22 @@ O dono colou o arquivo e a senha só nos Secrets do GitHub (que não podem ser l
 
 ## Pendências
 
-- README.md e ROADMAP.md: o PROJECT_STATE antigo dizia que ainda falavam em versão 0.3.8 e sem exclusão real, mas o CHANGELOG da sessão 5 diz que foram reescritos. NÃO lidos na sessão 6: pedir os textos e conferir.
-- Perguntar ao dono, uma por vez: números do relatório, CANCELAR, frase da mensagem de versão nova, e o resultado da 0.4.1 no TX9.
-- Chave de assinatura (acima).
-- debug.keystore.b64 na raiz, sem uso. strings_instalacao.xml tem textos sem uso.
-- TESTING.md não tem os testes das Etapas 2 e 3 no TX9. Não inventar.
-- Conferir RAM, armazenamento, kernel e ABIs com outra fonte. Testar root com a permissão negada. App sem ícone e sem banner de TV.
-- Ideia opcional: version.json com SHA-256 do APK.
+- Aguardar o Actions da versão 0.7.0 e confirmar a Release antes de marcar publicação concluída.
+- Pedir ao dono que teste no TX9 o acesso root permitido/negado, abertura do HISTÓRICO vazio e bloqueio do LABORATÓRIO sem root. Registrar o resultado como informado pelo dono.
+- Etapa B depende do inventário real de pacotes do TX9; não inserir nomes presumidos nem permitir desativação até haver classificação e proteção.
+- Modo Seguro de Boot ainda não foi implementado. Nenhum ajuste root persistente no boot está disponível.
+- A cópia da chave de assinatura fora do GitHub e o acesso à senha continuam não confirmados nos registros anteriores.
+- `debug.keystore.b64` e textos sem uso em `strings_instalacao.xml` ainda precisam ser conferidos antes de qualquer remoção.
 
 ## Próxima tarefa exata
 
-1. Pedir README.md e ROADMAP.md e conferir se estão atuais (0.4.1, exclusão real existe).
-2. Perguntas ao dono (uma por vez) sobre o que ele viu no TX9.
-3. Só depois pensar em limpar outras áreas. Cache de outros aplicativos só na Etapa 6, depois de validar o método no TX9. Nada de limpeza automática ao abrir o app.
-4. Ao subir versão: salvar strings.xml (versao_texto) primeiro e app/build.gradle (versionCode e versionName) por último (ele dispara a Release).
+1. Conferir o Actions e a Release v0.7.0 após o push da versão.
+2. Aguardar o dono testar a Etapa A no TX9 antes de iniciar a Etapa B.
+3. Na Etapa B, coletar o inventário real antes de classificar ou desativar pacotes.
 
 ## Instruções para o próximo agente
 
-- Seguir AGENTS.md. Dono muito iniciante, fala por voz: português simples, UM passo por vez, arquivo INTEIRO para colar, nunca reescrever de memória (pedir o arquivo atual). Se pedir rapidez: entregue os arquivos da tarefa juntos, na ordem certa de salvar, sem pular a conferência.
-- As cópias do GitHub que o agente abre podem estar velhas. Confie no que o dono colar.
-- O dono responde "ok" ou número; às vezes escreve palavras trocadas. Se não bater, pergunte de novo com respostas numeradas. "Deu certo" sozinho não basta.
-- Se o texto falar de canais, filmes ou ExoPlayer, é do outro projeto (asc-tvbox): ignorar e avisar com calma.
-- Verde no Actions não prova a Release: confirmar na página Releases.
+- Seguir `AGENTS.md`: editar diretamente no Codespaces, verificar com terminal e usar Actions quando o SDK local não estiver disponível.
+- Não marcar a Etapa A como testada no TX9 sem o dono informar o resultado.
+- Confirmar a Release separadamente do check verde do Actions.
 - Não recomeçar o projeto.

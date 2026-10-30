@@ -4,7 +4,7 @@ Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlog
 
 ## Estado
 
-Em desenvolvimento. Versão 0.4.0. Já existe: tela inicial para controle remoto, tela de Diagnóstico, teste de root, atualização pelo próprio app (botão VERIFICAR ATUALIZAÇÃO e checagem ao abrir o app, com download do APK e abertura do instalador do Android) e a tela LIMPEZA AVANÇADA, com dois botões: SIMULAR (só mede o cache do próprio app e não apaga nada) e APAGAR CACHE DO APP (apaga só o cache do próprio app, depois de uma simulação e de uma confirmação, e mostra um relatório com Antes, Apagados e Depois). A atualização por cima do app instalado funcionou no TX9. A exclusão real foi testada no TX9 uma vez e o cache ficou em zero; faltam conferir os números do relatório. Cache de outros aplicativos não é apagado. Veja PROJECT_STATE.md.
+Em desenvolvimento. Versão 0.7.0 em preparação, após a base 0.6.0 (versionCode 16). Já existem diagnóstico, atualização pelo próprio app, limpeza do cache do próprio app, otimização atual, lista somente leitura de aplicativos e, na Etapa A, núcleo root, HISTÓRICO e LABORATÓRIO. A Etapa A passou 16 testes JUnit em execução JVM manual; o Actions compilou a base da etapa. Ainda não foi testada no TX9 e a Release 0.7.0 depende do próximo workflow. Veja `PROJECT_STATE.md`.
 
 ## Objetivo
 
@@ -12,7 +12,8 @@ Em desenvolvimento. Versão 0.4.0. Já existe: tela inicial para controle remoto
 - Limpeza segura, com modo de simulação.
 - Otimização rápida com relatório antes e depois, só com números medidos.
 - Interface em português, feita para controle remoto.
-- Funciona sem root. As funções de root são opcionais e ficam atrás de confirmação.
+- O app abre sem root. O Modo Avançado exige root confirmado e fica bloqueado se o teste falhar.
+- Toda ação root deve ser registrada no Histórico e oferecer reversão. Recursos sem validação no TX9 ficam desligados.
 - Funciona sem internet. A internet só é usada para verificar e baixar uma versão nova do app.
 
 ## Compatibilidade
@@ -39,8 +40,8 @@ Pela página Releases:
 Para atualizar um app que já está instalado, use o botão VERIFICAR ATUALIZAÇÃO dentro do próprio app (veja abaixo). Não precisa desinstalar o app antigo.
 
 ## Como publicar uma versão nova
+Atualize o texto da versão (`versao_texto`) em `app/src/main/res/values/strings.xml` primeiro. Depois dos testes passarem, atualize `versionName` e `versionCode` em `app/build.gradle` por último, pois esse arquivo dispara a Release. O Actions precisa terminar verde; depois confirme também a página Releases.
 
-Suba versionName e versionCode em app/build.gradle e também o texto da versão (versao_texto) em app/src/main/res/values/strings.xml. Salve o strings.xml primeiro e o build.gradle por último, porque é o build.gradle que dispara a Release. Ao salvar no main, se os testes e a compilação passarem, o GitHub cria sozinho a Release vX.Y.Z com o APK. Sem subir a versão, nenhuma Release nova é criada. O check verde no Actions não basta: confirme na página Releases que a Release apareceu.
 
 ## Atualização do app
 
@@ -48,11 +49,15 @@ O botão VERIFICAR ATUALIZAÇÃO e a checagem ao abrir o app consultam a Release
 
 ## Limpeza
 
-A tela LIMPEZA AVANÇADA só mexe no cache do próprio TX9 Booster (a pasta de cache interna e a externa do app). Toda exclusão passa por uma trava de segurança (PoliticaCaminhos) que proíbe caminhos do sistema e nunca segue links simbólicos. O botão APAGAR só liga depois de SIMULAR e sempre pede confirmação, com o foco em CANCELAR.
+A tela LIMPEZA AVANÇADA ainda só mexe no cache do próprio TX9 Booster. Toda exclusão passa por `PoliticaCaminhos`; o botão APAGAR só liga depois de SIMULAR e pede confirmação com foco em CANCELAR. A limpeza de outros apps ainda não foi implementada.
+
+## Root, Histórico e Laboratório
+
+O Histórico fica em arquivo privado do app e guarda o valor original, o novo valor, o resultado e o comando inverso. O Reversor confere o estado atual antes de agir. Na Etapa A, a política root nega alterações de pacote até haver inventário real e lista de proteção. Os interruptores do Laboratório começam desligados; ativá-los não executa funções ainda não implementadas. Nenhuma função avançada foi testada no TX9.
 
 ## Assinatura do APK
+Desde a versão 0.3.7, o APK é assinado com a chave própria do projeto por Secrets do GitHub. Nunca publique a chave privada ou sua senha no repositório. O arquivo `debug.keystore.b64` permanece no repositório e não é usado na compilação. Este APK ainda não é feito para loja de aplicativos.
 
-Desde a versão 0.3.7, o APK é assinado com uma chave própria do dono do projeto. A chave e a senha ficam guardadas nos Secrets do GitHub e fora do repositório. As versões antigas usavam uma chave pública de testes. O arquivo debug.keystore.b64 continua no repositório, mas não é mais usado na compilação. Este APK ainda não é feito para loja de aplicativos.
 
 ## Aviso
 

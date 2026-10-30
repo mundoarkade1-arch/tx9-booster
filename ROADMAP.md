@@ -1,45 +1,48 @@
 # ROADMAP.md — Plano de desenvolvimento
 
-Níveis de estado: Planejada, Em desenvolvimento, Implementada, Compilada, Testada em ambiente simulado, Testada no aparelho real, Aprovada.
+Estados possíveis: Planejada, Em desenvolvimento, Implementada, Compilada, Testada em ambiente simulado, Testada no aparelho real, Aprovada.
 
-Regra: não avançar para uma etapa que apaga coisas se a etapa anterior ainda tem falhas importantes.
+## Base existente
 
-## Etapa 1 — Planejamento e compatibilidade
+O projeto já tem diagnóstico, teste de root, atualização pelo próprio app, limpeza simulada e exclusão do cache do próprio app, otimização atual e inventário de aplicativos somente leitura. Os resultados de testes anteriores no TX9 estão registrados como informados pelo dono em `TESTING.md`; não foram repetidos nesta etapa.
 
-Estado: Aprovada (2026-10-26). Fez: repositório, arquivos de continuidade, escolha de tecnologia (Java), versão mínima do Android (5.0, API 21).
+## Etapa A — Núcleo root (0.7.0)
 
-## Etapa 2 — Estrutura mínima funcional
+Estado: Implementada e compilada no Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` (execução 41062735314, sucesso). Os 16 testes novos do núcleo também passaram em execução JVM manual no Codespaces. Ainda não testada no TX9.
 
-Estado: Testada no aparelho real (2026-10-26), resultado informado pelo dono. Fez: projeto Android com tela inicial, navegação por controle remoto, compilação automática do APK pelo GitHub Actions. Pendências: ícone e banner do app.
+- RootShell com comandos de fábrica fixa, timeout, leitura separada de stdout/stderr, código de saída e teste de `uid=0`.
+- ComandosRoot com validação de pacote e lista fechada de chaves de leitura.
+- Mutação de pacote negada por padrão; só uma política baseada no inventário real poderá liberar pacotes nas próximas etapas.
+- Histórico texto append-only em `getFilesDir()`, com original, valor novo, resultado e inverso.
+- Reversor de ação, grupo ou tudo; compara o estado atual e para na primeira divergência.
+- Tela HISTÓRICO ligada à lista inicial, com confirmação e foco em CANCELAR.
+- Tela LABORATÓRIO com interruptores desligados por padrão e modo avançado bloqueado quando root não é confirmado.
+- Próxima verificação: Actions da versão 0.7.0, confirmação da Release e teste do dono no TX9.
 
-## Etapa 3 — Diagnóstico
+## Etapa B — Inventário e debloat (0.8.0)
 
-Estado: Testada no aparelho real, com pendências (2026-10-26), resultado informado pelo dono. Fez: tela de diagnóstico (modelo, Android e API, kernel, ABIs, RAM, armazenamento) e teste de root com comando fixo e limite de tempo. Confirmado pelo dono: Android real é a API 25 (7.1); root funcionando. Pendências: conferir RAM, armazenamento, kernel e ABIs com outra fonte; testar o root com a permissão negada.
+Estado: Planejada. Primeiro exportar o inventário real do TX9 e receber a lista do dono. Só então classificar os pacotes observados em PROTEGIDO, SEGURO, AGRESSIVO ou ANALISAR. Começar por `pm disable-user --user 0`; remoção do usuário 0 só será considerada após confirmar no aparelho que `pm install-existing` funciona. Nunca apagar APKs do sistema nem alterar `/system`. Registrar estado antes/depois no Histórico e conferir memória medida.
 
-## Etapa 4 — Limpeza segura
+## Etapa C — Memória e processos (0.9.0)
 
-Estado: Em desenvolvimento. Simulação: testada no aparelho real (2026-10-27, versão 0.3.9, informado pelo dono: mostrou 1,4 MB). Exclusão real do cache do próprio app: testada no aparelho real (2026-10-27, versão 0.4.0, informado pelo dono: o cache ficou em zero), com pendências. Feito: PoliticaCaminhos (trava de caminhos, com teste); Analisador somente leitura (limites de 20000 arquivos, 20 níveis e 100 itens, ignora links simbólicos, 10 testes); ExclusorCache (apaga só dentro das áreas autorizadas, passa cada arquivo pela trava, nunca apaga a própria pasta do cache, ignora links simbólicos, conta só o que foi apagado de verdade); tela LIMPEZA com SIMULAR (nunca apaga) e APAGAR CACHE DO APP (só liga depois de simular, pede confirmação com o foco em CANCELAR, mostra relatório de Antes, Apagados e Depois). Falta: conferir os números do relatório e o teste do CANCELAR no TX9; escrever o teste JUnit do ExclusorCache (hoje só foi verificado por um script do agente em ambiente simulado); decidir se vale limpar outras áreas, sempre pela PoliticaCaminhos. Cache de outros aplicativos fica para a Etapa 6. Pronta quando: a simulação lista o que seria apagado sem apagar nada, os testes de caminhos e do ExclusorCache passam e a limpeza real libera bytes medidos e conferidos.
+Estado: Planejada. Mostrar apenas valores existentes no kernel/aparelho. Cada ajuste exige diagnóstico, original salvo, justificativa, medição e reversão. Aplicação no boot depende do Modo Seguro de Boot.
 
-## Atualização do app (pedido do dono, fora da numeração das etapas)
+## Etapa D — Limpeza profunda com root (1.0.0)
 
-Estado: Testada no aparelho real, com pendência (2026-10-27), resultado informado pelo dono. Feito: permissão de internet; VerificadorAtualizacao (consulta a Release mais recente do repositório, só https e só endereços do repositório, tempo limite, compara versões como números); botão VERIFICAR ATUALIZAÇÃO e checagem silenciosa ao abrir; InstaladorAtualizacao (baixa o APK dentro do app, sem navegador, e abre o instalador do Android); tarefa "Publicar Release" no workflow (cria a Release vX.Y.Z quando o versionName sobe). O app não instala sozinho: o dono sempre confirma no Android. Chave própria de assinatura desde a versão 0.3.7. Confirmado pelo dono: a 0.3.8 foi instalada pelo botão do app, por cima da 0.3.7, e a tela inicial mostrou "Versão 0.3.8"; a 0.3.9 também foi instalada por cima da 0.3.8, com mudança real de código, e a tela mostrou "Versão 0.3.9"; a 0.4.0 foi instalada pelo botão do app (informado pelo dono). O texto de versão da tela inicial (versao_texto em strings.xml) estava escrito à mão como 0.3.4 e foi corrigido. A frase da mensagem de versão nova foi trocada na 0.3.9. Pendências: a causa exata da recusa antiga não foi provada (a 0.3.7, com chave própria, instalou por cima da 0.3.5, de chave de depuração, o que não bate com a teoria de assinaturas diferentes); o dono ainda não contou o que leu na frase nova da mensagem de versão nova; o dono guardar uma cópia do tx9booster.jks fora do computador, junto com a senha (se perder, precisa desinstalar o app e criar chave nova). Ideia opcional: publicar um version.json com o SHA-256 do APK e conferir no download. Pronta quando: a frase nova for conferida na tela e a cópia da chave estiver guardada. Instalação silenciosa com root: não implementada, só considerar depois, como recurso de alto risco da Etapa 6.
+Estado: Planejada. Criar política root de caminhos permitidos/proibidos. Simulação obrigatória, limites de profundidade e quantidade, exclusão dos apps protegidos, confirmação e relatório. Nunca seguir links simbólicos nem usar caminho livre em comando destrutivo.
 
-## Etapa 5 — Otimização rápida
+## Etapa E — Desempenho do sistema (1.1.0)
 
-Estado: Planejada. Fazer: botão que junta as funções já testadas e mostra relatório antes e depois (RAM livre, espaço livre, arquivos removidos, falhas). Pronta quando: o relatório mostra só números medidos, sem promessa de velocidade.
+Estado: Planejada. Ajustes opcionais e medidos, com valor original no Histórico e reversão. Só oferecer controles para arquivos e opções confirmados no aparelho.
 
-## Etapa 6 — Funções avançadas de root
+## Etapa F — Perfis e otimização v2 (1.2.0)
 
-Estado: Planejada. Fazer: só recursos com compatibilidade, segurança e reversão verificadas, sempre com confirmação do usuário. Inclui validar se existe método seguro para limpar cache de outros aplicativos no Android 7.1. Pronta quando: cada função foi testada no TX9 e tem plano de reversão escrito.
+Estado: Planejada. Combinar apenas funções que já tenham sido validadas no TX9. Mostrar números medidos e manter REVERTER TUDO acessível.
 
-## Etapa 7 — Gerenciamento de aplicativos
+## Etapa G — Opcionais de alto risco
 
-Estado: Planejada. Fazer: lista de aplicativos, classificação (usuário, sistema, crítico, a analisar), ações reversíveis. Pronta quando: nenhum componente crítico pode ser desativado pelo app e toda ação pode ser desfeita.
+Estado: Planejada, somente se o dono pedir. Cada opção começa desligada e exige confirmação, testes e reversão. Inclui instalação silenciosa, exportação/importação do Histórico e tarefas agendadas explícitas.
 
-## Etapa 8 — Testes e estabilidade
+## Travas permanentes
 
-Estado: Planejada. Fazer: testar controle remoto, consumo de memória e comportamento no TX9, corrigir falhas. Pronta quando: TESTING.md mostra os testes no aparelho real sem falhas importantes.
-
-## Etapa 9 — Acabamento e lançamento
-
-Estado: Em desenvolvimento. Já feito: assinatura com chave própria do dono (desde a 0.3.7, com Secrets no GitHub) e instruções de instalação pela página Releases no README. Fazer: melhorar interface, ícone e banner, revisar documentos, limpar arquivos sem uso (debug.keystore.b64 na raiz e textos sem uso em strings_instalacao.xml), preparar versão estável. Pronta quando: README.md explica como gerar e instalar o APK, o dono tem cópia segura da chave e a versão estável foi aprovada pelo dono.
+Não desativar SELinux, alterar partições, bootloader, recovery ou firmware, executar `dd`, `mkfs` ou `flash`, nem apagar `/system`, `/vendor`, `/boot`, `/data/system`, `/data/dalvik-cache`, `/data/app`, `/efs` ou `/persist`. Componentes essenciais e pacotes protegidos nunca podem ser desativados. Função sem validação no TX9 permanece desligada.

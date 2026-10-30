@@ -72,6 +72,28 @@ public class RootShellTest {
     }
 
     @Test
+    public void politicaPadraoBloqueiaPacotesSemInventario() throws Exception {
+        final AtomicInteger chamadas = new AtomicInteger();
+        Historico historico = new Historico(pastaTemporaria.newFolder());
+        RootShell shell = new RootShell(new RootShell.Backend() {
+            @Override
+            public RootShell.Resultado executar(String comando, long timeoutMillis) {
+                chamadas.incrementAndGet();
+                return RootShell.Resultado.sucesso(0, "uid=0(root)");
+            }
+        });
+
+        RootShell.Resultado resultado = shell.executarAcaoPacote(
+                ComandosRoot.desativarPacote("br.exemplo.app"), historico,
+                "ATIVO", "DESATIVADO");
+
+        assertFalse(resultado.ok);
+        assertTrue(resultado.erro.contains("política"));
+        assertEquals(0, chamadas.get());
+        assertTrue(historico.listar().isEmpty());
+    }
+
+    @Test
     public void acaoRegistraAntesDeExecutarEConfirmaEstadoDepois() throws Exception {
         final Historico historico = new Historico(pastaTemporaria.newFolder());
         final Set<String> desativados = new HashSet<String>();
