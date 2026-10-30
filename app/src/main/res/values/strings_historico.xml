@@ -6,7 +6,6 @@
     <string name="hist_total">Ações registradas: %1$d</string>
     <string name="hist_reverter">REVERTER AÇÃO SELECIONADA</string>
     <string name="hist_atualizar">ATUALIZAR LISTA</string>
-    <string name="hist_item">%1$s
     <string name="hist_item">%1$s\n%2$s · %3$s\nAntes: %4$s | Depois: %5$s\nResultado: %6$s</string>
     <string name="hist_sem_selecao">Selecione uma ação concluída para reverter.</string>
     <string name="hist_confirmar_titulo">Reverter esta ação?</string>

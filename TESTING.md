@@ -1,3 +1,4 @@
+- `gh run view 41064358074`: a execução do commit `6c26801` parou em `:app:mergeDebugResources` porque `strings_historico.xml` continha uma declaração `<string>` incompleta. A declaração foi removida; os 16 testes JVM passaram novamente. A correção ainda aguarda uma execução Actions.
 # TESTING.md — Testes e resultados
 
 Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito: ambiente simulado, GitHub Actions ou aparelho real (TX9).

@@ -1,3 +1,4 @@
+- O primeiro push da 0.7.0 encontrou uma declaração incompleta em `strings_historico.xml`; corrigida após consultar o log. A correção ainda precisa passar no Actions.
 # CHANGELOG.md — Histórico de alterações
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
