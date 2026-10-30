@@ -1,18 +1,18 @@
-- O primeiro push da 0.7.0 encontrou uma declaração incompleta em `strings_historico.xml`; corrigida após consultar o log. A correção ainda precisa passar no Actions.
 # CHANGELOG.md — Histórico de alterações
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-30 — Etapa A: núcleo root e versão 0.7.0 em preparação
+## 2026-10-30 — Etapa A: núcleo root e versão 0.7.0 publicada
 
 - `AGENTS.md` atualizado para o trabalho direto no Codespaces e para a autorização do modo avançado com root, mantendo as operações críticas proibidas.
 - Criados `RootShell` e `ComandosRoot`: comandos fixos, validação de pacote e chaves de leitura permitidas, espera limitada, stdout/stderr separados, código de saída tipado e teste de `uid=0`.
 - Criados `Historico` (arquivo texto append-only privado) e `Reversor` (ação, grupo e tudo), com verificação do estado atual. A política padrão nega qualquer alteração de pacote até existir inventário real.
 - Botão HISTÓRICO ligado à tela com reversão confirmada e foco inicial em CANCELAR. Criada a tela LABORATÓRIO com interruptores desligados por padrão e bloqueio se root não for confirmado.
 - 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` concluiu com sucesso (execução 41062735314); esse run antecedeu o último teste adicional e a correção de formatação do texto.
-- A versão 0.7.0 ainda aguarda o workflow e a confirmação da Release. A Etapa A não foi testada no TX9.
+- 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O workflow corretivo da versão 0.7.0 passou em Testes e Compilar APK assinado.
+- O primeiro push encontrou uma declaração incompleta em `strings_historico.xml`. O recurso foi corrigido; o workflow seguinte passou em Testes, Compilar APK e Publicar Release. A Release `v0.7.0` foi publicada com APK.
+- A Etapa A ainda não foi testada no TX9.
 
-### 2026-10-30 — Núcleo root, Histórico e Laboratório (Codespaces e Actions)
 ## 2026-10-27 — Sessão 6: ExclusorCacheTest e versão 0.4.1 (textos da limpeza corrigidos)
 
 - ExclusorCacheTest.java criado em app/src/test/java/br/com/tx9booster/ (JUnit 4.13.2, 7 testes, pastas falsas temporárias): apaga arquivos e subpastas e mantém a pasta do cache; soma os bytes certos; pasta vazia; área fora da política; link simbólico ignorado (pula, não falha, se o ambiente não deixar criar link); área nula ou inexistente; política nula. O agente conferiu que os nomes dos campos batem com o ExclusorCache.java. O dono informou Actions verde. Não cria Release. Não conferido: se o teste do link rodou ou foi pulado.

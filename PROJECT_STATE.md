@@ -1,6 +1,6 @@
 # PROJECT_STATE.md — Estado atual do projeto
 
-Última atualização: 2026-10-30 (Etapa A, versão 0.7.0 em preparação)
+Última atualização: 2026-10-30 (Etapa A, versão 0.7.0 publicada)
 
 ## Projeto
 
@@ -8,7 +8,7 @@ TX9 Booster: app Android (Java, androidx.core só para FileProvider) de manuten�
 
 ## Versão atual
 
-Versão-base confirmada no commit de origem: 0.6.0 (versionCode 16). A Etapa A foi implementada e compilada no Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` (execução 41062735314, sucesso). Os arquivos da versão 0.7.0 estão em preparação; a Release 0.7.0 ainda não foi confirmada.
+0.7.0 (versionCode 17). Release `v0.7.0` publicada com APK. O workflow do commit `19d66ab3237228bba6631a7317c3f6ad80bb773f` terminou com sucesso nos jobs Testes, Compilar APK e Publicar Release (execução 41064795547). Ainda não testada no TX9.
 
 ## O que existe
 
@@ -21,7 +21,7 @@ O app tem tela inicial, Diagnóstico, teste de root, atualização pelo próprio
 - `Historico` usa arquivo texto append-only em `getFilesDir()` e guarda data/hora, ação, alvo, valores original/novo, resultado e inverso.
 - `Reversor` confere o estado antes de reverter uma ação, grupo ou todas as ações elegíveis; para no primeiro estado divergente.
 - HISTÓRICO e LABORATÓRIO foram ligados à tela inicial. Nenhuma função avançada foi validada no TX9. Os interruptores não executam ações por si mesmos.
-- 16 testes JUnit novos passaram em execução JVM manual no Codespaces. O Gradle local não iniciou a tarefa por falta de Android SDK. A execução Actions indicada acima compilou o commit de origem; a versão 0.7.0 terá uma nova execução antes da Release.
+- 16 testes JUnit novos passaram em execução JVM manual no Codespaces. O Gradle local não iniciou a tarefa por falta de Android SDK. O Actions da versão 0.7.0 passou testes e compilação no commit `19d66ab`; a Release foi publicada.
 
 ## Funções anteriores
 
@@ -42,8 +42,7 @@ O dono colou o arquivo e a senha só nos Secrets do GitHub (que não podem ser l
 
 ## Pendências
 
-- Aguardar o Actions da versão 0.7.0 e confirmar a Release antes de marcar publicação concluída.
-- Pedir ao dono que teste no TX9 o acesso root permitido/negado, abertura do HISTÓRICO vazio e bloqueio do LABORATÓRIO sem root. Registrar o resultado como informado pelo dono.
+- Pedir ao dono que teste no TX9 o acesso root permitido/negado, abertura do HISTÓRICO e interruptores desligados/bloqueio sem root. Registrar o resultado como informado pelo dono.
 - Etapa B depende do inventário real de pacotes do TX9; não inserir nomes presumidos nem permitir desativação até haver classificação e proteção.
 - Modo Seguro de Boot ainda não foi implementado. Nenhum ajuste root persistente no boot está disponível.
 - A cópia da chave de assinatura fora do GitHub e o acesso à senha continuam não confirmados nos registros anteriores.
@@ -51,9 +50,8 @@ O dono colou o arquivo e a senha só nos Secrets do GitHub (que não podem ser l
 
 ## Próxima tarefa exata
 
-1. Conferir o Actions e a Release v0.7.0 após o push da versão.
-2. Aguardar o dono testar a Etapa A no TX9 antes de iniciar a Etapa B.
-3. Na Etapa B, coletar o inventário real antes de classificar ou desativar pacotes.
+1. Aguardar o dono testar a Etapa A no TX9 antes de iniciar a Etapa B.
+2. Na Etapa B, coletar o inventário real antes de classificar ou desativar pacotes.
 
 ## Instruções para o próximo agente
 

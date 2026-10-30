@@ -8,7 +8,7 @@ O projeto já tem diagnóstico, teste de root, atualização pelo próprio app, 
 
 ## Etapa A — Núcleo root (0.7.0)
 
-Estado: Implementada e compilada no Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` (execução 41062735314, sucesso). Os 16 testes novos do núcleo também passaram em execução JVM manual no Codespaces. Ainda não testada no TX9.
+Estado: Implementada, compilada e publicada. Workflow da versão 0.7.0 no commit `19d66ab3237228bba6631a7317c3f6ad80bb773f` (execução 41064795547) passou em Testes, Compilar APK e Publicar Release. Os 16 testes novos também passaram em execução JVM manual no Codespaces. Ainda não testada no TX9.
 
 - RootShell com comandos de fábrica fixa, timeout, leitura separada de stdout/stderr, código de saída e teste de `uid=0`.
 - ComandosRoot com validação de pacote e lista fechada de chaves de leitura.
@@ -17,7 +17,7 @@ Estado: Implementada e compilada no Actions do commit `786cee33dd4f23044c0abd323
 - Reversor de ação, grupo ou tudo; compara o estado atual e para na primeira divergência.
 - Tela HISTÓRICO ligada à lista inicial, com confirmação e foco em CANCELAR.
 - Tela LABORATÓRIO com interruptores desligados por padrão e modo avançado bloqueado quando root não é confirmado.
-- Próxima verificação: Actions da versão 0.7.0, confirmação da Release e teste do dono no TX9.
+- Próxima verificação: teste do dono no TX9 antes de iniciar a Etapa B.
 
 ## Etapa B — Inventário e debloat (0.8.0)
 

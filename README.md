@@ -4,7 +4,7 @@ Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlog
 
 ## Estado
 
-Em desenvolvimento. Versão 0.7.0 em preparação, após a base 0.6.0 (versionCode 16). Já existem diagnóstico, atualização pelo próprio app, limpeza do cache do próprio app, otimização atual, lista somente leitura de aplicativos e, na Etapa A, núcleo root, HISTÓRICO e LABORATÓRIO. A Etapa A passou 16 testes JUnit em execução JVM manual; o Actions compilou a base da etapa. Ainda não foi testada no TX9 e a Release 0.7.0 depende do próximo workflow. Veja `PROJECT_STATE.md`.
+Em desenvolvimento. Versão 0.7.0 (versionCode 17), Release publicada. Já existem diagnóstico, atualização pelo próprio app, limpeza do cache do próprio app, otimização atual, lista somente leitura de aplicativos e, na Etapa A, núcleo root, HISTÓRICO e LABORATÓRIO. Os 16 testes do núcleo passaram em execução JVM manual; o Actions passou os testes e compilou o APK assinado. A Etapa A ainda não foi testada no TX9. Veja `PROJECT_STATE.md`.
 
 ## Objetivo
 

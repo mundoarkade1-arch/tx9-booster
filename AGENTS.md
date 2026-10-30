@@ -26,6 +26,8 @@ Iniciante em programação. Trabalha no GitHub Codespaces; o agente pode editar 
 Ler nesta ordem: AGENTS.md, PROJECT_STATE.md, ROADMAP.md, CHANGELOG.md, TESTING.md, README.md. Depois ler os arquivos de código ligados à tarefa. Conferir o estado real do repositório. Não presumir que a documentação está perfeita: ela já ficou atrasada uma vez e isso causou arquivos duplicados.
 
 Antes de criar qualquer arquivo de código, conferir se ele já existe. Para ler arquivos dentro de pastas, pedir ao dono que use "Copy raw file" no link do arquivo e cole na conversa. A página principal do GitHub pode vir de cópia antiga.
+Antes de criar qualquer arquivo de código, conferir se ele já existe. A página principal do GitHub pode estar desatualizada; confira o workspace.
+Antes de criar qualquer arquivo de código, conferir se ele já existe. A página principal do GitHub pode estar desatualizada; confira o workspace.
 
 ## Regras de honestidade
 

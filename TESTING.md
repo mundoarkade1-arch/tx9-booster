@@ -1,4 +1,3 @@
-- `gh run view 41064358074`: a execução do commit `6c26801` parou em `:app:mergeDebugResources` porque `strings_historico.xml` continha uma declaração `<string>` incompleta. A declaração foi removida; os 16 testes JVM passaram novamente. A correção ainda aguarda uma execução Actions.
 # TESTING.md — Testes e resultados
 
 Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito: ambiente simulado, GitHub Actions ou aparelho real (TX9).
@@ -9,7 +8,8 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 - JUnit executado manualmente com JDK 17 e JUnit 4.13.2 para `ComandosRoot`, `RootShell`, `Historico` e `Reversor`: 16 testes passaram, cobrindo validação contra injeção, lista de chaves de leitura, confirmação de root, política padrão que nega pacotes, registro antes da ação, persistência do Histórico, reversão individual e total e recusa quando o estado diverge.
 - `gradle testDebugUnitTest` foi tentado no Codespaces e não iniciou: falta Android SDK (`ANDROID_HOME` ou `sdk.dir`). Isso não é falha de teste. A compilação/execução Gradle completa depende do Actions.
-- `gh run watch 41062735314`: workflow do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` terminou com sucesso. Esse commit antecedeu a adição do 16º teste e a última alteração no texto do Histórico; o push da versão 0.7.0 deve validar a árvore final.
+- O primeiro workflow `41064358074` parou em `:app:mergeDebugResources` por uma declaração `<string>` incompleta; o XML foi corrigido.
+- O workflow corretivo `41064795547`, commit `19d66ab3237228bba6631a7317c3f6ad80bb773f`, passou em Testes, Compilar APK assinado e Publicar Release `v0.7.0`.
 - Nenhuma tela ou função da Etapa A foi testada no TX9. Nenhum resultado de aparelho foi informado pelo dono nesta etapa.
 
 ### 2026-10-27 — Sessão 6: textos da limpeza corrigidos, versão 0.4.1 (informado pelo dono)
