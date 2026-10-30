@@ -1,64 +1,35 @@
 # TX9 Booster
 
-Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlogic S905W, 1 GB de RAM, com root).
+Aplicativo Android nativo em Java para manutenção do TV Box Tanix TX9. Interface em português, feita para controle remoto.
 
 ## Estado
 
-Em desenvolvimento. Versão publicada: 0.7.0. A Etapa A inclui núcleo root, HISTÓRICO e LABORATÓRIO; o dono informou que a testou no TX9 e que tudo deu certo. A Etapa B, parte 1, está em desenvolvimento e exportará um inventário somente leitura. Nenhum pacote será desativado nesta parte. Veja `PROJECT_STATE.md`.
+Versão publicada: 0.7.0. A 0.7.1 está em preparação e inclui exportação somente leitura do inventário de pacotes. O dono informou que testou a Etapa A no TX9 e que tudo deu certo. A 0.7.1 ainda aguarda a publicação no GitHub.
 
-## Objetivo
+## O que existe
 
-- Diagnóstico do aparelho: Android, RAM, armazenamento, ABI, root.
-- Limpeza segura, com modo de simulação.
-- Otimização rápida com relatório antes e depois, só com números medidos.
-- Interface em português, feita para controle remoto.
-- O app abre sem root. O Modo Avançado exige root confirmado e fica bloqueado se o teste falhar.
-- Toda ação root deve ser registrada no Histórico e oferecer reversão. Recursos sem validação no TX9 ficam desligados.
-- Funciona sem internet. A internet só é usada para verificar e baixar uma versão nova do app.
+- Diagnóstico do aparelho e teste de root.
+- Atualização pelo próprio app. A instalação sempre depende da confirmação do dono no Android.
+- Limpeza do cache do próprio app com simulação e confirmação.
+- Otimização atual e lista de aplicativos somente leitura.
+- HISTÓRICO de ações root e tela LABORATÓRIO. O Modo Avançado exige root confirmado.
 
-## Compatibilidade
+## Inventário de pacotes na versão 0.7.1
 
-- Alvo principal: Tanix TX9. O aparelho do dono mostra "Android 10.1" com API 25. A API 25 (Android 7.1) é a versão real.
-- Versão mínima do app: Android 5.0 (API 21).
+No Laboratório, o botão GERAR INVENTÁRIO executará apenas `pm list packages -s`, `-d`, `-3` e `-f`. O resultado será salvo como `.txt` na pasta pública `Download`, e a tela mostrará o caminho completo. No Android 7.1, autorize o acesso ao armazenamento quando o sistema pedir.
 
-## Documentos do projeto
+Esta etapa só lê pacotes. Não cria listas para desativar e não altera nem remove aplicativo algum. A função estará disponível depois da publicação da 0.7.1.
 
-- AGENTS.md: regras permanentes.
-- PROJECT_STATE.md: estado atual e próxima tarefa.
-- ROADMAP.md: etapas do projeto.
-- CHANGELOG.md: histórico de mudanças.
-- TESTING.md: testes e resultados.
+## Instalar ou atualizar
 
-## Como instalar o APK
+Na página Releases do GitHub, baixe `tx9-booster-X.Y.Z.apk` e instale no TV Box. Para atualizar um app já instalado, use VERIFICAR ATUALIZAÇÃO. O Android sempre pede confirmação para instalar.
 
-Pela página Releases:
+## Publicar versão
 
-1. Abra a página Releases do repositório no GitHub.
-2. Abra a versão mais nova e, em Assets, baixe o arquivo tx9-booster-X.Y.Z.apk.
-3. Instale o arquivo no TV Box. O Android sempre pede a sua confirmação para instalar.
+Atualize primeiro `versao_texto` em `app/src/main/res/values/strings.xml`. Depois que os testes passarem, atualize `versionName` e `versionCode` em `app/build.gradle` por último. Confira o Actions e a página Releases.
 
-Para atualizar um app que já está instalado, use o botão VERIFICAR ATUALIZAÇÃO dentro do próprio app (veja abaixo). Não precisa desinstalar o app antigo.
+## Segurança
 
-## Como publicar uma versão nova
-Atualize o texto da versão (`versao_texto`) em `app/src/main/res/values/strings.xml` primeiro. Depois dos testes passarem, atualize `versionName` e `versionCode` em `app/build.gradle` por último, pois esse arquivo dispara a Release. O Actions precisa terminar verde; depois confirme também a página Releases.
+O app abre sem root, mas o Modo Avançado é bloqueado se o teste de root falhar. Recursos novos começam desligados e não são considerados validados no TX9 sem teste no aparelho.
 
-
-## Atualização do app
-
-O botão VERIFICAR ATUALIZAÇÃO e a checagem ao abrir o app consultam a Release mais recente deste repositório. Se houver versão nova, o app baixa o APK e abre o instalador do Android. O app não instala nada sozinho: a instalação é sempre confirmada por você no Android.
-
-## Limpeza
-
-A tela LIMPEZA AVANÇADA ainda só mexe no cache do próprio TX9 Booster. Toda exclusão passa por `PoliticaCaminhos`; o botão APAGAR só liga depois de SIMULAR e pede confirmação com foco em CANCELAR. A limpeza de outros apps ainda não foi implementada.
-
-## Root, Histórico e Laboratório
-
-O Histórico fica em arquivo privado do app e guarda o valor original, o novo valor, o resultado e o comando inverso. O Reversor confere o estado atual antes de agir. Na Etapa A, a política root nega alterações de pacote até haver inventário real e lista de proteção. O dono informou que testou a Etapa A no TX9 e que tudo deu certo; as demais funções avançadas ainda não foram validadas.
-
-## Assinatura do APK
-Desde a versão 0.3.7, o APK é assinado com a chave própria do projeto por Secrets do GitHub. Nunca publique a chave privada ou sua senha no repositório. O arquivo `debug.keystore.b64` permanece no repositório e não é usado na compilação. Este APK ainda não é feito para loja de aplicativos.
-
-
-## Aviso
-
-Este projeto mexe em arquivos do aparelho. A exclusão real apaga só o cache do próprio app, depois de uma confirmação. Nenhuma função é considerada segura no TX9 até ser testada nele.
+O APK usa a chave própria do projeto por Secrets do GitHub. Nunca publique a chave privada ou sua senha no repositório. O app usa internet somente para verificar atualizações.

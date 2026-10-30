@@ -2,12 +2,11 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-30 — Etapa A testada pelo dono; inventário da Etapa B em desenvolvimento
+## 2026-10-30 — Etapa A testada pelo dono; inventário 0.7.1 em preparação
 
-- O dono informou que testou a Etapa A no TX9 e que tudo deu certo.
-- Em desenvolvimento: botão no LABORATÓRIO para executar somente `pm list packages -s`, `-d`, `-3` e `-f` via RootShell e salvar o resultado como `.txt` em `Download`, mostrando o caminho completo.
-- Nenhuma lista para desativação foi criada e nenhum pacote foi alterado.
-- Os testes JVM do núcleo e do relatório passaram; a compilação/testes Android no Actions ainda precisam validar a integração da tela e do armazenamento. A versão continua 0.7.0 até a validação.
+- A Etapa B, parte 1, executa somente `pm list packages -s`, `-d`, `-3` e `-f` via RootShell, salva um `.txt` em `Download` e mostra o caminho completo.
+- Nenhuma lista para desativação foi criada e nenhum pacote foi alterado. O inventário ainda não foi testado no TX9.
+- 20 testes JUnit passaram manualmente. O Actions do commit `2860d88` (execução 41069125960) passou Testes e Compilar APK assinado na base 0.7.0. O workspace está em 0.7.1, aguardando o workflow de publicação.
 
 ## 2026-10-30 — Etapa A: núcleo root e versão 0.7.0 publicada
 
@@ -16,7 +15,7 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - Criados `Historico` (arquivo texto append-only privado) e `Reversor` (ação, grupo e tudo), com verificação do estado atual. A política padrão nega qualquer alteração de pacote até existir inventário real.
 - Botão HISTÓRICO ligado à tela com reversão confirmada e foco inicial em CANCELAR. Criada a tela LABORATÓRIO com interruptores desligados por padrão e bloqueio se root não for confirmado.
 - 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` concluiu com sucesso (execução 41062735314); esse run antecedeu o último teste adicional e a correção de formatação do texto.
-- 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O workflow corretivo da versão 0.7.0 passou em Testes e Compilar APK assinado.
+- 16 testes JUnit do núcleo passaram em execução JVM manual; o workflow corretivo da versão 0.7.0 passou em Testes, Compilar APK assinado e Publicar Release.
 - O primeiro push encontrou uma declaração incompleta em `strings_historico.xml`. O recurso foi corrigido; o workflow seguinte passou em Testes, Compilar APK e Publicar Release. A Release `v0.7.0` foi publicada com APK.
 
 ## 2026-10-27 — Sessão 6: ExclusorCacheTest e versão 0.4.1 (textos da limpeza corrigidos)

@@ -4,46 +4,44 @@ Estados possíveis: Planejada, Em desenvolvimento, Implementada, Compilada, Test
 
 ## Base existente
 
-O projeto já tem diagnóstico, teste de root, atualização pelo próprio app, limpeza simulada e exclusão do cache do próprio app, otimização atual e inventário de aplicativos somente leitura. Os resultados de testes anteriores no TX9 estão registrados como informados pelo dono em `TESTING.md`; não foram repetidos nesta etapa.
+O app já tem diagnóstico, teste de root, atualização pelo próprio app, limpeza simulada e exclusão do cache do próprio app, otimização atual e lista de aplicativos somente leitura. Resultados de versões antigas estão em `TESTING.md`.
 
 ## Etapa A — Núcleo root (0.7.0)
 
-Estado: Implementada, compilada, publicada e testada no aparelho (resultado informado pelo dono em 2026-10-30: tudo certo).
+Estado: Implementada, compilada, publicada e testada no TX9. O dono informou em 2026-10-30 que testou e que tudo deu certo.
 
-- RootShell com comandos de fábrica fixa, timeout, leitura separada de stdout/stderr, código de saída e teste de `uid=0`.
-- ComandosRoot com validação de pacote e lista fechada de chaves de leitura.
-- Mutação de pacote negada por padrão; só uma política baseada no inventário real poderá liberar pacotes nas próximas etapas.
-- Histórico texto append-only em `getFilesDir()`, com original, valor novo, resultado e inverso.
-- Reversor de ação, grupo ou tudo; compara o estado atual e para na primeira divergência.
-- Tela HISTÓRICO ligada à lista inicial, com confirmação e foco em CANCELAR.
-- Tela LABORATÓRIO com interruptores desligados por padrão e modo avançado bloqueado quando root não é confirmado.
-- Próxima verificação: teste do dono no TX9 antes de iniciar a Etapa B.
-- Próxima verificação: exportar o inventário no TX9 e receber o arquivo antes de classificar pacotes.
+- RootShell, ComandosRoot, Histórico e Reversor com comandos fixos e ações reversíveis.
+- HISTÓRICO ligado à tela inicial; LABORATÓRIO com recursos desligados por padrão e bloqueio sem root.
+- A política padrão nega alterações de pacote até haver inventário real e proteção.
 
 ## Etapa B — Inventário e debloat (0.8.0)
 
-Estado: Em desenvolvimento, parte 1. Implementar apenas a exportação dos resultados reais de `pm list packages -s`, `-d`, `-3` e `-f` para arquivo compartilhado. Não criar listas de pacotes e não desativar nada. A classificação só começa depois que o dono trouxer o inventário.
+Parte 1: inventário somente leitura. O botão do Laboratório executa `pm list packages -s`, `-d`, `-3` e `-f` via RootShell, salva um `.txt` em `Download` e mostra o caminho completo.
+
+Estado: código implementado e validado pelo Actions no commit `2860d88` (execução 41069125960); a versão 0.7.1 está em preparação. 20 testes JUnit JVM manuais passaram. O inventário ainda não foi testado no TX9.
+
+Não criar listas de pacotes nem desativar/remover nada nesta parte. Depois que o dono trouxer o inventário, classificar somente nomes reais observados. Qualquer ação de desativação pertence a uma etapa posterior, com proteção e reversão.
 
 ## Etapa C — Memória e processos (0.9.0)
 
-Estado: Planejada. Mostrar apenas valores existentes no kernel/aparelho. Cada ajuste exige diagnóstico, original salvo, justificativa, medição e reversão. Aplicação no boot depende do Modo Seguro de Boot.
+Planejada. Exibir somente recursos existentes. Cada ajuste exige diagnóstico, original salvo no Histórico, justificativa, medição e reversão. Aplicar no boot depende do Modo Seguro de Boot.
 
 ## Etapa D — Limpeza profunda com root (1.0.0)
 
-Estado: Planejada. Criar política root de caminhos permitidos/proibidos. Simulação obrigatória, limites de profundidade e quantidade, exclusão dos apps protegidos, confirmação e relatório. Nunca seguir links simbólicos nem usar caminho livre em comando destrutivo.
+Planejada. Política explícita de caminhos permitidos e proibidos, simulação obrigatória, limites, proteção contra links simbólicos, confirmação e relatório.
 
 ## Etapa E — Desempenho do sistema (1.1.0)
 
-Estado: Planejada. Ajustes opcionais e medidos, com valor original no Histórico e reversão. Só oferecer controles para arquivos e opções confirmados no aparelho.
+Planejada. Ajustes opcionais e medidos, com original no Histórico e reversão; só oferecer opções confirmadas no aparelho.
 
 ## Etapa F — Perfis e otimização v2 (1.2.0)
 
-Estado: Planejada. Combinar apenas funções que já tenham sido validadas no TX9. Mostrar números medidos e manter REVERTER TUDO acessível.
+Planejada. Combinar somente funções validadas no TX9 e manter REVERTER TUDO acessível.
 
 ## Etapa G — Opcionais de alto risco
 
-Estado: Planejada, somente se o dono pedir. Cada opção começa desligada e exige confirmação, testes e reversão. Inclui instalação silenciosa, exportação/importação do Histórico e tarefas agendadas explícitas.
+Planejada, somente se o dono pedir. Cada opção começa desligada e exige confirmação, testes e reversão.
 
 ## Travas permanentes
 
-Não desativar SELinux, alterar partições, bootloader, recovery ou firmware, executar `dd`, `mkfs` ou `flash`, nem apagar `/system`, `/vendor`, `/boot`, `/data/system`, `/data/dalvik-cache`, `/data/app`, `/efs` ou `/persist`. Componentes essenciais e pacotes protegidos nunca podem ser desativados. Função sem validação no TX9 permanece desligada.
+Não desativar SELinux, alterar partições, bootloader, recovery ou firmware; executar `dd`, `mkfs` ou `flash`; apagar `/system`, `/vendor`, `/boot`, `/data/system`, `/data/dalvik-cache`, `/data/app`, `/efs` ou `/persist`; nem desativar componentes essenciais. Funções sem validação no TX9 ficam desligadas.

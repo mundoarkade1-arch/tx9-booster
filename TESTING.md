@@ -8,11 +8,12 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 - O dono informou que testou a Etapa A no TX9 e que tudo deu certo. Não foram informados detalhes individuais dos fluxos.
 
-### 2026-10-30 — Inventário de pacotes, parte 1 (Codespaces)
+### 2026-10-30 — Inventário de pacotes, parte 1 (Codespaces e Actions)
 
 - 20 testes JUnit passaram em execução JVM manual, cobrindo o núcleo root, os quatro comandos fixos e a formatação do relatório, inclusive erros e aviso de saída truncada.
-- A tela Android e a gravação no armazenamento compartilhado ainda aguardam compilação e teste pelo GitHub Actions. Não foram testadas no TX9 nesta etapa.
-- `gradle testDebugUnitTest` não iniciou no Codespaces por falta de Android SDK (`ANDROID_HOME`/`sdk.dir`). A tela e a gravação no armazenamento compartilhado ainda aguardam compilação pelo Actions; não foram testadas no TX9 nesta etapa.
+- `gradle testDebugUnitTest` não iniciou no Codespaces por falta de Android SDK (`ANDROID_HOME`/`sdk.dir`).
+- O workflow do commit `2860d88` (execução 41069125960) passou em Testes e Compilar APK assinado. A integração foi compilada na base 0.7.0 antes do aumento para 0.7.1.
+- A exportação do inventário ainda não foi testada no TX9.
 
 ### 2026-10-30 — Núcleo root, Histórico e Laboratório (Codespaces e Actions)
 
