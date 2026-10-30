@@ -85,6 +85,17 @@
             android:textSize="28sp" />
 
         <Button
+            android:id="@+id/btnLaboratorio"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/botao_fundo"
+            android:focusable="true"
+            android:text="@string/lab_botao"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp" />
+
+        <Button
             android:id="@+id/btnAtualizar"
             android:layout_width="match_parent"
             android:layout_height="72dp"

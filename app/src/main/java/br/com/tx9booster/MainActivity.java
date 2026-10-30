@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -25,7 +24,14 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnHistorico).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, R.string.em_breve, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, HistoricoActivity.class));
+            }
+        });
+
+        findViewById(R.id.btnLaboratorio).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LaboratorioActivity.class));
             }
         });
 

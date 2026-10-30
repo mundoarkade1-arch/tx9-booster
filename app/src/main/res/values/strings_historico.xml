@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hist_titulo">HISTÓRICO</string>
+    <string name="hist_carregando">Lendo ações registradas...</string>
+    <string name="hist_vazio">Ainda não há ações registradas.</string>
+    <string name="hist_total">Ações registradas: %1$d</string>
+    <string name="hist_reverter">REVERTER AÇÃO SELECIONADA</string>
+    <string name="hist_atualizar">ATUALIZAR LISTA</string>
+    <string name="hist_item">%1$s
+%2$s · %3$s
+Antes: %4$s | Depois: %5$s
+Resultado: %6$s</string>
+    <string name="hist_sem_selecao">Selecione uma ação concluída para reverter.</string>
+    <string name="hist_confirmar_titulo">Reverter esta ação?</string>
+    <string name="hist_confirmar_msg">O app vai conferir o estado atual antes de executar o comando inverso. Se o estado mudou, nada será alterado.</string>
+    <string name="hist_confirmar">REVERTER</string>
+    <string name="hist_cancelar">CANCELAR</string>
+    <string name="hist_trabalhando">Conferindo estado e revertendo...</string>
+    <string name="hist_erro_leitura">Não foi possível ler o Histórico: %1$s</string>
+    <string name="hist_acao_reversivel">%1$s · %2$s</string>
+    <string name="hist_acao_sem_alvo">%1$s · registro %2$s</string>
+</resources>

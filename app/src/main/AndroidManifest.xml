@@ -45,6 +45,14 @@
             android:name=".AppsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".HistoricoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LaboratorioActivity"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

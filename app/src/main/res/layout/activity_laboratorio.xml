@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#101820"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lab_titulo"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtLaboratorioRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/lab_testando"
+            android:textColor="#FFEB3B"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/lab_aviso"
+            android:textColor="#B0BEC5"
+            android:textSize="18sp" />
+
+        <Switch
+            android:id="@+id/switchDebloat"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_debloat"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/switchLimpezaRoot"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_limpeza"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/switchMemoria"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_memoria"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/switchDesempenho"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_desempenho"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Switch
+            android:id="@+id/switchBoot"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_boot"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnTestarRootLaboratorio"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/botao_fundo"
+            android:focusable="true"
+            android:text="@string/lab_testar_root"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+</ScrollView>

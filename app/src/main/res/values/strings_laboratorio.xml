@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lab_botao">LABORATÓRIO</string>
+    <string name="lab_titulo">LABORATÓRIO</string>
+    <string name="lab_testando">Verificando acesso root...</string>
+    <string name="lab_root_ok">Root confirmado. Recursos avançados continuam desligados até serem validados.</string>
+    <string name="lab_root_negado">Modo Avançado bloqueado: acesso root não confirmado.</string>
+    <string name="lab_aviso">Os interruptores começam desligados. Ativá-los não executa ações; cada função só será liberada quando estiver implementada, registrada no Histórico e validada no TX9.</string>
+    <string name="lab_debloat">Desativação reversível de aplicativos</string>
+    <string name="lab_limpeza">Limpeza profunda com root</string>
+    <string name="lab_memoria">Ajustes de memória e zRAM</string>
+    <string name="lab_desempenho">Ajustes de desempenho do sistema</string>
+    <string name="lab_boot">Aplicar ajustes ao iniciar</string>
+    <string name="lab_testar_root">TESTAR ROOT NOVAMENTE</string>
+</resources>
