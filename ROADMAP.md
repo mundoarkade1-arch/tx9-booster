@@ -18,7 +18,7 @@ Estado: Implementada, compilada, publicada e testada no TX9. O dono informou em 
 
 Parte 1: inventário somente leitura. O botão do Laboratório executa `pm list packages -s`, `-d`, `-3` e `-f` via RootShell, salva um `.txt` em `Download` e mostra o caminho completo.
 
-Estado: código implementado e validado pelo Actions no commit `2860d88` (execução 41069125960); a versão 0.7.1 está em preparação. 20 testes JUnit JVM manuais passaram. O inventário ainda não foi testado no TX9.
+Estado: Implementada, compilada e publicada em 0.7.1. O workflow do commit `f00dad1` (execução 41070382583) passou em Testes, Compilar APK e Publicar Release. 20 testes JUnit JVM manuais passaram. O inventário ainda não foi testado no TX9.
 
 Não criar listas de pacotes nem desativar/remover nada nesta parte. Depois que o dono trouxer o inventário, classificar somente nomes reais observados. Qualquer ação de desativação pertence a uma etapa posterior, com proteção e reversão.
 

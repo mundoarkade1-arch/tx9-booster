@@ -2,11 +2,11 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
-## 2026-10-30 — Etapa A testada pelo dono; inventário 0.7.1 em preparação
+## 2026-10-30 — Etapa A testada pelo dono; inventário 0.7.1 publicado
 
 - A Etapa B, parte 1, executa somente `pm list packages -s`, `-d`, `-3` e `-f` via RootShell, salva um `.txt` em `Download` e mostra o caminho completo.
 - Nenhuma lista para desativação foi criada e nenhum pacote foi alterado. O inventário ainda não foi testado no TX9.
-- 20 testes JUnit passaram manualmente. O Actions do commit `2860d88` (execução 41069125960) passou Testes e Compilar APK assinado na base 0.7.0. O workspace está em 0.7.1, aguardando o workflow de publicação.
+- 20 testes JUnit passaram manualmente. O Actions do commit `2860d88` passou testes e compilação antes do aumento da versão. O workflow final `41070382583`, commit `f00dad1`, passou em Testes, Compilar APK assinado e Publicar Release. A Release `v0.7.1` foi publicada com APK.
 
 ## 2026-10-30 — Etapa A: núcleo root e versão 0.7.0 publicada
 

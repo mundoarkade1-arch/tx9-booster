@@ -8,7 +8,7 @@ TX9 Booster: app Android nativo em Java para manutenção do Tanix TX9. Interfac
 
 ## Versão
 
-Release publicada: 0.7.0 (versionCode 17). No workspace, `app/build.gradle` e `strings.xml` estão em 0.7.1 (versionCode 18), ainda aguardando o workflow final e a publicação da Release.
+0.7.1 (versionCode 18). Release `v0.7.1` publicada com APK. O workflow do commit `f00dad17743a0347a840596c6a5ee7ebb5c15eb9` passou em Testes, Compilar APK e Publicar Release (execução 41070382583).
 
 ## Base do aplicativo
 
@@ -25,14 +25,13 @@ Estado: Implementada, compilada, publicada e testada no TX9. O dono informou em 
 
 ## Etapa B — Inventário e debloat
 
-Parte 1 em implementação para 0.7.1: o Laboratório oferece exportação somente leitura de `pm list packages -s`, `-d`, `-3` e `-f` pelo RootShell. O resultado é gravado em `.txt` na pasta pública `Download`, e a tela mostra o caminho completo. Nenhuma lista de desativação foi criada e nenhum pacote foi alterado.
+Parte 1 implementada e publicada em 0.7.1: o Laboratório oferece exportação somente leitura de `pm list packages -s`, `-d`, `-3` e `-f` pelo RootShell. O resultado é gravado em `.txt` na pasta pública `Download`, e a tela mostra o caminho completo. Nenhuma lista de desativação foi criada e nenhum pacote foi alterado.
 
-O código passou 20 testes JUnit JVM manuais e o Actions do commit `2860d88` (execução 41069125960) passou testes e compilou o APK na versão-base 0.7.0. O Gradle local não iniciou por falta de Android SDK. O inventário ainda não foi testado no TX9.
+20 testes JUnit JVM manuais passaram. O Actions passou testes e compilação assinada. O Gradle local não iniciou por falta de Android SDK. O inventário ainda não foi testado no TX9.
 
 ## Pendências
 
-- Aguardar o workflow da versão 0.7.1 e confirmar a Release.
-- O dono deve gerar o inventário no TX9 e trazer o conteúdo do arquivo `.txt` para análise. Classificar somente os nomes presentes no arquivo.
+- O dono deve gerar o inventário 0.7.1 no TX9 e trazer o conteúdo do arquivo `.txt` para análise. Classificar somente os nomes presentes no arquivo.
 - Não desativar nem remover pacotes nesta parte.
 - Modo Seguro de Boot ainda não foi implementado. Nenhum ajuste root persistente no boot está disponível.
 - Os registros anteriores dizem que a cópia da chave de assinatura fora do GitHub e a senha não foram confirmadas. Nunca pedir a senha.
@@ -40,9 +39,8 @@ O código passou 20 testes JUnit JVM manuais e o Actions do commit `2860d88` (ex
 
 ## Próxima tarefa exata
 
-1. Conferir o Actions e a Release `v0.7.1`.
-2. No TX9, gerar o inventário e trazer o texto do arquivo para análise.
-3. Só depois classificar os pacotes observados. Não desativar nada sem etapa e autorização próprias.
+1. No TX9, gerar o inventário e trazer o texto do arquivo para análise.
+2. Só depois classificar os pacotes observados. Não desativar nada sem etapa e autorização próprias.
 
 ## Instruções para o próximo agente
 

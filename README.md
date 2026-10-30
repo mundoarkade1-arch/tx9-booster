@@ -4,7 +4,7 @@ Aplicativo Android nativo em Java para manutenção do TV Box Tanix TX9. Interfa
 
 ## Estado
 
-Versão publicada: 0.7.0. A 0.7.1 está em preparação e inclui exportação somente leitura do inventário de pacotes. O dono informou que testou a Etapa A no TX9 e que tudo deu certo. A 0.7.1 ainda aguarda a publicação no GitHub.
+Versão publicada: 0.7.1. A Etapa A foi testada no TX9, conforme informado pelo dono. A Etapa B, parte 1, exporta um inventário somente leitura; o inventário ainda aguarda teste no aparelho.
 
 ## O que existe
 
@@ -17,8 +17,10 @@ Versão publicada: 0.7.0. A 0.7.1 está em preparação e inclui exportação so
 ## Inventário de pacotes na versão 0.7.1
 
 No Laboratório, o botão GERAR INVENTÁRIO executará apenas `pm list packages -s`, `-d`, `-3` e `-f`. O resultado será salvo como `.txt` na pasta pública `Download`, e a tela mostrará o caminho completo. No Android 7.1, autorize o acesso ao armazenamento quando o sistema pedir.
+No Laboratório, use GERAR INVENTÁRIO. O app executa apenas `pm list packages -s`, `-d`, `-3` e `-f`, salva o resultado como `.txt` na pasta pública `Download` e mostra o caminho completo. No Android 7.1, autorize o acesso ao armazenamento quando o sistema pedir.
 
 Esta etapa só lê pacotes. Não cria listas para desativar e não altera nem remove aplicativo algum. A função estará disponível depois da publicação da 0.7.1.
+Esta etapa só lê pacotes. Não cria listas para desativar e não altera nem remove aplicativo algum.
 
 ## Instalar ou atualizar
 

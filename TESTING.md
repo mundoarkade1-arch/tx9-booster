@@ -13,6 +13,9 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 - 20 testes JUnit passaram em execução JVM manual, cobrindo o núcleo root, os quatro comandos fixos e a formatação do relatório, inclusive erros e aviso de saída truncada.
 - `gradle testDebugUnitTest` não iniciou no Codespaces por falta de Android SDK (`ANDROID_HOME`/`sdk.dir`).
 - O workflow do commit `2860d88` (execução 41069125960) passou em Testes e Compilar APK assinado. A integração foi compilada na base 0.7.0 antes do aumento para 0.7.1.
+- O workflow do commit `2860d88` (execução 41069125960) passou em Testes e Compilar APK assinado na base 0.7.0.
+- O workflow final `41070382583`, commit `f00dad1`, passou em Testes, Compilar APK assinado e Publicar Release `v0.7.1`.
+- A exportação do inventário ainda não foi testada no TX9.
 - A exportação do inventário ainda não foi testada no TX9.
 
 ### 2026-10-30 — Núcleo root, Histórico e Laboratório (Codespaces e Actions)
