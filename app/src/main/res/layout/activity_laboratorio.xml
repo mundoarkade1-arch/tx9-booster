@@ -98,5 +98,27 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
 
+        <Button
+            android:id="@+id/btnInventarioPacotes"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/botao_fundo"
+            android:enabled="false"
+            android:focusable="true"
+            android:text="@string/lab_inventario_botao"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/txtInventarioPacotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/lab_inventario_aguardando"
+            android:textColor="#FFEB3B"
+            android:textIsSelectable="true"
+            android:textSize="18sp" />
+
     </LinearLayout>
 </ScrollView>

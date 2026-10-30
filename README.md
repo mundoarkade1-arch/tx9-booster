@@ -4,7 +4,7 @@ Aplicativo Android de manutenção e otimização para o TV Box Tanix TX9 (Amlog
 
 ## Estado
 
-Em desenvolvimento. Versão 0.7.0 (versionCode 17), Release publicada. Já existem diagnóstico, atualização pelo próprio app, limpeza do cache do próprio app, otimização atual, lista somente leitura de aplicativos e, na Etapa A, núcleo root, HISTÓRICO e LABORATÓRIO. Os 16 testes do núcleo passaram em execução JVM manual; o Actions passou os testes e compilou o APK assinado. A Etapa A ainda não foi testada no TX9. Veja `PROJECT_STATE.md`.
+Em desenvolvimento. Versão publicada: 0.7.0. A Etapa A inclui núcleo root, HISTÓRICO e LABORATÓRIO; o dono informou que a testou no TX9 e que tudo deu certo. A Etapa B, parte 1, está em desenvolvimento e exportará um inventário somente leitura. Nenhum pacote será desativado nesta parte. Veja `PROJECT_STATE.md`.
 
 ## Objetivo
 
@@ -53,7 +53,7 @@ A tela LIMPEZA AVANÇADA ainda só mexe no cache do próprio TX9 Booster. Toda e
 
 ## Root, Histórico e Laboratório
 
-O Histórico fica em arquivo privado do app e guarda o valor original, o novo valor, o resultado e o comando inverso. O Reversor confere o estado atual antes de agir. Na Etapa A, a política root nega alterações de pacote até haver inventário real e lista de proteção. Os interruptores do Laboratório começam desligados; ativá-los não executa funções ainda não implementadas. Nenhuma função avançada foi testada no TX9.
+O Histórico fica em arquivo privado do app e guarda o valor original, o novo valor, o resultado e o comando inverso. O Reversor confere o estado atual antes de agir. Na Etapa A, a política root nega alterações de pacote até haver inventário real e lista de proteção. O dono informou que testou a Etapa A no TX9 e que tudo deu certo; as demais funções avançadas ainda não foram validadas.
 
 ## Assinatura do APK
 Desde a versão 0.3.7, o APK é assinado com a chave própria do projeto por Secrets do GitHub. Nunca publique a chave privada ou sua senha no repositório. O arquivo `debug.keystore.b64` permanece no repositório e não é usado na compilação. Este APK ainda não é feito para loja de aplicativos.

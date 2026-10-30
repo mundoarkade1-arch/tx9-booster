@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import java.util.List;
+
 public class ComandosRootTest {
 
     @Test
@@ -44,5 +46,19 @@ public class ComandosRootTest {
     @Test
     public void testaRootUsaSomenteId() {
         assertEquals("id", ComandosRoot.testarRoot().linha());
+    }
+
+    @Test
+    public void inventarioUsaQuatroComandosFixosNaOrdemSolicitada() {
+        List<ComandosRoot.Comando> comandos = ComandosRoot.comandosInventario();
+
+        assertEquals(4, comandos.size());
+        assertEquals("pm list packages -s", comandos.get(0).linha());
+        assertEquals("pm list packages -d", comandos.get(1).linha());
+        assertEquals("pm list packages -3", comandos.get(2).linha());
+        assertEquals("pm list packages -f", comandos.get(3).linha());
+        for (ComandosRoot.Comando comando : comandos) {
+            assertEquals("", comando.inverso());
+        }
     }
 }

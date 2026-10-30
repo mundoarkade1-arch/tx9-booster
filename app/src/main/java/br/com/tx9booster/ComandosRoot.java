@@ -1,7 +1,9 @@
 package br.com.tx9booster;
 
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -12,6 +14,9 @@ public final class ComandosRoot {
     static final String DESATIVAR_PACOTE = "DESATIVAR_PACOTE";
     static final String REATIVAR_PACOTE = "REATIVAR_PACOTE";
     static final String LER_SYSFS = "LER_SYSFS";
+    static final String LISTAR_SISTEMA = "LISTAR_SISTEMA";
+    static final String LISTAR_USUARIO = "LISTAR_USUARIO";
+    static final String LISTAR_COM_CAMINHOS = "LISTAR_COM_CAMINHOS";
 
     private static final Pattern PACOTE = Pattern.compile(
             "[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)+");
@@ -35,6 +40,27 @@ public final class ComandosRoot {
 
     public static Comando listarPacotesDesativados() {
         return new Comando(LISTAR_DESATIVADOS, "", "pm list packages -d", "", 15000L);
+    }
+
+    public static Comando listarPacotesSistema() {
+        return new Comando(LISTAR_SISTEMA, "", "pm list packages -s", "", 15000L);
+    }
+
+    public static Comando listarPacotesUsuario() {
+        return new Comando(LISTAR_USUARIO, "", "pm list packages -3", "", 15000L);
+    }
+
+    public static Comando listarPacotesComCaminhos() {
+        return new Comando(LISTAR_COM_CAMINHOS, "", "pm list packages -f", "", 15000L);
+    }
+
+    public static List<Comando> comandosInventario() {
+        List<Comando> comandos = new ArrayList<Comando>();
+        comandos.add(listarPacotesSistema());
+        comandos.add(listarPacotesDesativados());
+        comandos.add(listarPacotesUsuario());
+        comandos.add(listarPacotesComCaminhos());
+        return Collections.unmodifiableList(comandos);
     }
 
     public static Comando desativarPacote(String pacote) {

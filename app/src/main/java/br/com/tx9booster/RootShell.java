@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class RootShell {
 
-    private static final int LIMITE_SAIDA = 65536;
+    private static final int LIMITE_SAIDA = 524288;
     private final Backend backend;
     private final PoliticaPacotes politicaPacotes;
 
@@ -184,13 +184,16 @@ public final class RootShell {
         public final int codigo;
         public final String saida;
         public final String erro;
+        public final boolean saidaTruncada;
         public final String registroId;
 
-        private Resultado(boolean ok, int codigo, String saida, String erro, String registroId) {
+        private Resultado(boolean ok, int codigo, String saida, String erro,
+                          boolean saidaTruncada, String registroId) {
             this.ok = ok;
             this.codigo = codigo;
             this.saida = saida == null ? "" : saida;
             this.erro = erro == null ? "" : erro;
+            this.saidaTruncada = saidaTruncada;
             this.registroId = registroId;
         }
 
@@ -199,15 +202,25 @@ public final class RootShell {
         }
 
         static Resultado sucesso(int codigo, String saida, String erro) {
-            return new Resultado(true, codigo, saida, erro, null);
+            return sucesso(codigo, saida, erro, false);
+        }
+
+        static Resultado sucesso(int codigo, String saida, String erro,
+                                 boolean saidaTruncada) {
+            return new Resultado(true, codigo, saida, erro, saidaTruncada, null);
         }
 
         static Resultado falha(int codigo, String saida, String erro) {
-            return new Resultado(false, codigo, saida, erro, null);
+            return falha(codigo, saida, erro, false);
+        }
+
+        static Resultado falha(int codigo, String saida, String erro,
+                               boolean saidaTruncada) {
+            return new Resultado(false, codigo, saida, erro, saidaTruncada, null);
         }
 
         private Resultado comRegistroId(String id) {
-            return new Resultado(ok, codigo, saida, erro, id);
+            return new Resultado(ok, codigo, saida, erro, saidaTruncada, id);
         }
     }
 
@@ -241,7 +254,8 @@ public final class RootShell {
                     processo.destroy();
                     espera.join(1000L);
                     return Resultado.falha(-1, stdout.conteudo(),
-                            "Tempo limite excedido ao executar comando root.");
+                            "Tempo limite excedido ao executar comando root.",
+                            stdout.foiTruncada());
                 }
 
                 stdout.join(1000L);
@@ -250,11 +264,13 @@ public final class RootShell {
                 String saida = stdout.conteudo();
                 String erro = stderr.conteudo();
                 if (codigoSaida == 0) {
-                    return Resultado.sucesso(codigoSaida, saida, erro);
+                        return Resultado.sucesso(codigoSaida, saida, erro,
+                            stdout.foiTruncada());
                 }
                 String detalhe = erro.length() > 0 ? erro
                         : "Comando root falhou (código " + codigoSaida + ").";
-                return Resultado.falha(codigoSaida, saida, detalhe);
+                return Resultado.falha(codigoSaida, saida, detalhe,
+                    stdout.foiTruncada());
             } catch (IOException e) {
                 return Resultado.falha(-1, "", "Não foi possível iniciar su: "
                         + mensagem(e));
@@ -279,6 +295,7 @@ public final class RootShell {
     private static final class StreamCollector extends Thread {
         private final InputStream stream;
         private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        private boolean truncada;
 
         StreamCollector(InputStream stream) {
             this.stream = stream;
@@ -296,6 +313,9 @@ public final class RootShell {
                         if (espaco > 0) {
                             buffer.write(trecho, 0, Math.min(espaco, lidos));
                         }
+                        if (lidos > espaco) {
+                            truncada = true;
+                        }
                     }
                 }
             } catch (IOException ignorado) {
@@ -312,6 +332,12 @@ public final class RootShell {
         synchronized String conteudo() {
             synchronized (buffer) {
                 return new String(buffer.toByteArray(), Charset.forName("UTF-8"));
+            }
+        }
+
+        synchronized boolean foiTruncada() {
+            synchronized (buffer) {
+                return truncada;
             }
         }
     }

@@ -2,6 +2,13 @@
 
 Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 
+## 2026-10-30 — Etapa A testada pelo dono; inventário da Etapa B em desenvolvimento
+
+- O dono informou que testou a Etapa A no TX9 e que tudo deu certo.
+- Em desenvolvimento: botão no LABORATÓRIO para executar somente `pm list packages -s`, `-d`, `-3` e `-f` via RootShell e salvar o resultado como `.txt` em `Download`, mostrando o caminho completo.
+- Nenhuma lista para desativação foi criada e nenhum pacote foi alterado.
+- Os testes JVM do núcleo e do relatório passaram; a compilação/testes Android no Actions ainda precisam validar a integração da tela e do armazenamento. A versão continua 0.7.0 até a validação.
+
 ## 2026-10-30 — Etapa A: núcleo root e versão 0.7.0 publicada
 
 - `AGENTS.md` atualizado para o trabalho direto no Codespaces e para a autorização do modo avançado com root, mantendo as operações críticas proibidas.
@@ -11,7 +18,6 @@ Cada alteração relevante entra aqui, da mais nova para a mais antiga.
 - 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O Actions do commit `786cee33dd4f23044c0abd32342f9ce1bf477f1b` concluiu com sucesso (execução 41062735314); esse run antecedeu o último teste adicional e a correção de formatação do texto.
 - 16 testes JUnit do núcleo passaram em execução JVM manual no Codespaces. `gradle testDebugUnitTest` não iniciou porque o Android SDK não está instalado/configurado. O workflow corretivo da versão 0.7.0 passou em Testes e Compilar APK assinado.
 - O primeiro push encontrou uma declaração incompleta em `strings_historico.xml`. O recurso foi corrigido; o workflow seguinte passou em Testes, Compilar APK e Publicar Release. A Release `v0.7.0` foi publicada com APK.
-- A Etapa A ainda não foi testada no TX9.
 
 ## 2026-10-27 — Sessão 6: ExclusorCacheTest e versão 0.4.1 (textos da limpeza corrigidos)
 

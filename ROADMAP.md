@@ -8,7 +8,7 @@ O projeto já tem diagnóstico, teste de root, atualização pelo próprio app, 
 
 ## Etapa A — Núcleo root (0.7.0)
 
-Estado: Implementada, compilada e publicada. Workflow da versão 0.7.0 no commit `19d66ab3237228bba6631a7317c3f6ad80bb773f` (execução 41064795547) passou em Testes, Compilar APK e Publicar Release. Os 16 testes novos também passaram em execução JVM manual no Codespaces. Ainda não testada no TX9.
+Estado: Implementada, compilada, publicada e testada no aparelho (resultado informado pelo dono em 2026-10-30: tudo certo).
 
 - RootShell com comandos de fábrica fixa, timeout, leitura separada de stdout/stderr, código de saída e teste de `uid=0`.
 - ComandosRoot com validação de pacote e lista fechada de chaves de leitura.
@@ -18,10 +18,11 @@ Estado: Implementada, compilada e publicada. Workflow da versão 0.7.0 no commit
 - Tela HISTÓRICO ligada à lista inicial, com confirmação e foco em CANCELAR.
 - Tela LABORATÓRIO com interruptores desligados por padrão e modo avançado bloqueado quando root não é confirmado.
 - Próxima verificação: teste do dono no TX9 antes de iniciar a Etapa B.
+- Próxima verificação: exportar o inventário no TX9 e receber o arquivo antes de classificar pacotes.
 
 ## Etapa B — Inventário e debloat (0.8.0)
 
-Estado: Planejada. Primeiro exportar o inventário real do TX9 e receber a lista do dono. Só então classificar os pacotes observados em PROTEGIDO, SEGURO, AGRESSIVO ou ANALISAR. Começar por `pm disable-user --user 0`; remoção do usuário 0 só será considerada após confirmar no aparelho que `pm install-existing` funciona. Nunca apagar APKs do sistema nem alterar `/system`. Registrar estado antes/depois no Histórico e conferir memória medida.
+Estado: Em desenvolvimento, parte 1. Implementar apenas a exportação dos resultados reais de `pm list packages -s`, `-d`, `-3` e `-f` para arquivo compartilhado. Não criar listas de pacotes e não desativar nada. A classificação só começa depois que o dono trouxer o inventário.
 
 ## Etapa C — Memória e processos (0.9.0)
 

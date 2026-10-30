@@ -12,4 +12,12 @@
     <string name="lab_desempenho">Ajustes de desempenho do sistema</string>
     <string name="lab_boot">Aplicar ajustes ao iniciar</string>
     <string name="lab_testar_root">TESTAR ROOT NOVAMENTE</string>
+    <string name="lab_inventario_botao">GERAR INVENTÁRIO DE PACOTES</string>
+    <string name="lab_inventario_aguardando">O inventário ainda não foi gerado.</string>
+    <string name="lab_inventario_permissao">O Android precisa permitir acesso ao armazenamento compartilhado para salvar o inventário.</string>
+    <string name="lab_inventario_gerando">Lendo pacotes e salvando arquivo. Aguarde...</string>
+    <string name="lab_inventario_salvo">Arquivo salvo em:
+%1$s</string>
+    <string name="lab_inventario_falha">Não foi possível gerar o inventário: %1$s</string>
+    <string name="lab_inventario_sem_root">Modo avançado bloqueado: confirme o acesso root antes de gerar o inventário.</string>
 </resources>

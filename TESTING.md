@@ -4,13 +4,23 @@ Só entram aqui testes que foram realmente feitos. Cada teste diz onde foi feito
 
 ## Resultados até agora
 
+### 2026-10-30 — Etapa A no TX9 (informado pelo dono)
+
+- O dono informou que testou a Etapa A no TX9 e que tudo deu certo. Não foram informados detalhes individuais dos fluxos.
+
+### 2026-10-30 — Inventário de pacotes, parte 1 (Codespaces)
+
+- 20 testes JUnit passaram em execução JVM manual, cobrindo o núcleo root, os quatro comandos fixos e a formatação do relatório, inclusive erros e aviso de saída truncada.
+- A tela Android e a gravação no armazenamento compartilhado ainda aguardam compilação e teste pelo GitHub Actions. Não foram testadas no TX9 nesta etapa.
+- `gradle testDebugUnitTest` não iniciou no Codespaces por falta de Android SDK (`ANDROID_HOME`/`sdk.dir`). A tela e a gravação no armazenamento compartilhado ainda aguardam compilação pelo Actions; não foram testadas no TX9 nesta etapa.
+
 ### 2026-10-30 — Núcleo root, Histórico e Laboratório (Codespaces e Actions)
 
 - JUnit executado manualmente com JDK 17 e JUnit 4.13.2 para `ComandosRoot`, `RootShell`, `Historico` e `Reversor`: 16 testes passaram, cobrindo validação contra injeção, lista de chaves de leitura, confirmação de root, política padrão que nega pacotes, registro antes da ação, persistência do Histórico, reversão individual e total e recusa quando o estado diverge.
 - `gradle testDebugUnitTest` foi tentado no Codespaces e não iniciou: falta Android SDK (`ANDROID_HOME` ou `sdk.dir`). Isso não é falha de teste. A compilação/execução Gradle completa depende do Actions.
 - O primeiro workflow `41064358074` parou em `:app:mergeDebugResources` por uma declaração `<string>` incompleta; o XML foi corrigido.
 - O workflow corretivo `41064795547`, commit `19d66ab3237228bba6631a7317c3f6ad80bb773f`, passou em Testes, Compilar APK assinado e Publicar Release `v0.7.0`.
-- Nenhuma tela ou função da Etapa A foi testada no TX9. Nenhum resultado de aparelho foi informado pelo dono nesta etapa.
+- Etapa A no TX9: o dono informou que testou e que tudo deu certo. A exportação do inventário da Etapa B ainda não foi testada no TX9.
 
 ### 2026-10-27 — Sessão 6: textos da limpeza corrigidos, versão 0.4.1 (informado pelo dono)
 

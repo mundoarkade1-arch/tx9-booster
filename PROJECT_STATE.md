@@ -9,6 +9,7 @@ TX9 Booster: app Android (Java, androidx.core só para FileProvider) de manuten�
 ## Versão atual
 
 0.7.0 (versionCode 17). Release `v0.7.0` publicada com APK. O workflow do commit `19d66ab3237228bba6631a7317c3f6ad80bb773f` terminou com sucesso nos jobs Testes, Compilar APK e Publicar Release (execução 41064795547). Ainda não testada no TX9.
+0.7.0 (versionCode 17). Release `v0.7.0` publicada com APK. O dono informou que testou a Etapa A no TX9 e que tudo deu certo.
 
 ## O que existe
 
@@ -21,6 +22,7 @@ O app tem tela inicial, Diagnóstico, teste de root, atualização pelo próprio
 - `Historico` usa arquivo texto append-only em `getFilesDir()` e guarda data/hora, ação, alvo, valores original/novo, resultado e inverso.
 - `Reversor` confere o estado antes de reverter uma ação, grupo ou todas as ações elegíveis; para no primeiro estado divergente.
 - HISTÓRICO e LABORATÓRIO foram ligados à tela inicial. Nenhuma função avançada foi validada no TX9. Os interruptores não executam ações por si mesmos.
+- HISTÓRICO e LABORATÓRIO foram ligados à tela inicial. O dono informou que testou a Etapa A no TX9 e que tudo deu certo. Os interruptores não executam ações por si mesmos.
 - 16 testes JUnit novos passaram em execução JVM manual no Codespaces. O Gradle local não iniciou a tarefa por falta de Android SDK. O Actions da versão 0.7.0 passou testes e compilação no commit `19d66ab`; a Release foi publicada.
 
 ## Funções anteriores
@@ -28,11 +30,13 @@ O app tem tela inicial, Diagnóstico, teste de root, atualização pelo próprio
 - Limpeza real continua restrita ao cache do próprio app, com simulação, confirmação e política de caminhos.
 - A otimização existente atua no cache do app e solicita ao Android encerrar processos de apps de usuário; não é uma função root.
 - A lista de aplicativos continua somente leitura. Nenhum pacote do TX9 foi inventariado ou classificado nesta etapa.
-- Resultados anteriores no aparelho são os descritos no histórico abaixo e foram informados pelo dono; a Etapa A ainda não foi testada no TX9.
+- Resultados anteriores no aparelho são os descritos no histórico abaixo e foram informados pelo dono. O dono informou que a Etapa A foi testada no TX9 e que tudo deu certo.
+Resultados anteriores no aparelho são os descritos no histórico abaixo e foram informados pelo dono.
 
 ## Atualização do app
 
 - O fluxo de atualização foi testado em versões anteriores no TX9, conforme os registros históricos. A instalação da versão 0.7.0 ainda não foi testada no TX9.
+- O fluxo de atualização foi testado em versões anteriores no TX9, conforme os registros históricos. Não há resultado separado para o botão de atualização na versão 0.7.0.
 - Assinatura com chave própria desde a 0.3.7 (tx9booster.jks, alias tx9booster; Secrets TX9_KEYSTORE_BASE64 e TX9_SENHA).
 - Causa exata da recusa antiga NÃO provada.
 
@@ -44,6 +48,7 @@ O dono colou o arquivo e a senha só nos Secrets do GitHub (que não podem ser l
 
 - Pedir ao dono que teste no TX9 o acesso root permitido/negado, abertura do HISTÓRICO e interruptores desligados/bloqueio sem root. Registrar o resultado como informado pelo dono.
 - Etapa B depende do inventário real de pacotes do TX9; não inserir nomes presumidos nem permitir desativação até haver classificação e proteção.
+- Etapa B, parte 1, em desenvolvimento: exportar somente `pm list packages -s`, `-d`, `-3` e `-f`. Nenhuma lista de desativação foi criada e nenhum pacote foi alterado.
 - Modo Seguro de Boot ainda não foi implementado. Nenhum ajuste root persistente no boot está disponível.
 - A cópia da chave de assinatura fora do GitHub e o acesso à senha continuam não confirmados nos registros anteriores.
 - `debug.keystore.b64` e textos sem uso em `strings_instalacao.xml` ainda precisam ser conferidos antes de qualquer remoção.
@@ -51,7 +56,8 @@ O dono colou o arquivo e a senha só nos Secrets do GitHub (que não podem ser l
 ## Próxima tarefa exata
 
 1. Aguardar o dono testar a Etapa A no TX9 antes de iniciar a Etapa B.
-2. Na Etapa B, coletar o inventário real antes de classificar ou desativar pacotes.
+1. Validar no Actions a compilação/testes do exportador de inventário.
+2. O dono deve gerar o inventário no TX9 e trazer o conteúdo do arquivo para classificação; não desativar pacotes nesta parte.
 
 ## Instruções para o próximo agente
 
